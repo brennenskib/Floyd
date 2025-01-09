@@ -27,6 +27,7 @@ key.registerKeyPress(() => {
 
         rot.toAngles(0, 75 - Player.getPitch(), 100, () => {
             rightClick()
+            jump()
             rot.toAngles(ogYaw - Player.getYaw(), ogPitch - Player.getPitch(), 100, () => {
                 setSlot(ogSlot)
             })
