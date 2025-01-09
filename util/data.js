@@ -9,7 +9,8 @@ const obj = {
     Thyst_Hider: true,
     Positional: true,
     blackListUrl: 'test.com',
-    Secret_Aura: true
+    Secret_Aura: true,
+    NoStopCobble: true
 }
 
 global.floyd.obj = obj

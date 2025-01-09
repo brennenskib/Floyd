@@ -1,7 +1,5 @@
-import RenderLibV2 from "../../../RenderLibV2/index"
-
-const utils = global.conatus.MBUtils
 const rot = global.floyd.rot;
+const prefix = global.floyd.utils.prefix;
 
 const MathHelper = Java.type("net.minecraft.util.MathHelper");
 const C07PacketPlayerDigging = Java.type("net.minecraft.network.play.client.C07PacketPlayerDigging");
@@ -9,11 +7,18 @@ const mcBlockPos = Java.type("net.minecraft.util.BlockPos");
 const AABB = Java.type("net.minecraft.util.AxisAlignedBB");
 const MCBlocks = Java.type('net.minecraft.init.Blocks');
 
+const key = new global.floyd.DynamicReload.FloydKeybind("Nuker", Keyboard.KEY_NONE)
+
 let mined = [];
 let realBrokenBlocks = [];
 
 let enabled = false;
 let globalBlock = false;
+
+key.registerKeyPress(() => {
+    enabled = !enabled;
+    ChatLib.chat(`${prefix} Nuker | ${enabled ? "True" : "False"}.`)    
+})
 
 class MiningBlock {
     constructor(array) {
@@ -111,7 +116,7 @@ function getEnumFacing(vec3) {
 }
 
 function sendBreakBlockPacket(bp, enumFacing) {
-    if(!enumFacing) return breakBlock(bp, Player.getPlayer().func_174811_aO().func_176734_d());
+    if(!enumFacing) enumFacing = Player.getPlayer().func_174811_aO().func_176734_d(); // return breakBlock(bp, Player.getPlayer().func_174811_aO().func_176734_d());
     else {
         Client.sendPacket(
             new C07PacketPlayerDigging(
@@ -125,8 +130,10 @@ function sendBreakBlockPacket(bp, enumFacing) {
     }
 }
 
-function breakBlock(bp) {
+function breakBlock(x) {
+    let bp = new BlockPos(x);
     if(World.getBlockAt(bp).type.getID() == 0 || World.getBlockAt(bp).type.getID() == 7) return;
+    
     let enumFacing = getEnumFacing(new net.minecraft.util.Vec3(bp.x, bp.y, bp.z))
     let mcBlockPos = bp.toMCBlock();
     let blockPos = new BlockPos(bp);
@@ -162,7 +169,7 @@ function containsBlock(block = Block) {
     block.getMetadata();
     let blockid = block.type.getID();
     
-    if(blockid == 1) return true;
+    if(blockid == 1 || blockid == 7) return true;
     else return false;
 }
 
@@ -233,7 +240,7 @@ register('tick', () => {
     } else {
         if(rot.isWorking()) return;
         if(!globalBlock[0] || !globalBlock[1]) return;
-        breakBlock(new BlockPos(globalBlock[2][0], globalBlock[2][1], globalBlock[2][2]))
+        sendBreakBlockPacket(new BlockPos(globalBlock[2][0], globalBlock[2][1], globalBlock[2][2]).toMCBlock())
         globalBlock = false;
     }
 })
@@ -245,6 +252,7 @@ register('tick', () => {
         this.enabled ? ChatLib.chat(`§l§3[§bConatus§3] §r§fEnabled by Powder Chest Opener.`) : ChatLib.chat(`§l§3[§bConatus§3] §r§fDisabled by Powder Chest Opener.`) 
     }
 */
+/*
 class NukerV2 {
     constructor() {
         this.rot = new global.conatus.Rotation(35);
@@ -352,3 +360,4 @@ register('tick', () => {
 register('renderWorld', () => {
     nuker.render();
 })
+*/

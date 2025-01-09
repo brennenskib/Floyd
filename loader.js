@@ -3,7 +3,7 @@ global.floyd = {};
 const File = Java.type("java.io.File");
 const features = new File(`${Client.getMinecraft().field_71412_D.getPath()}/config/ChatTriggers/modules/Floyd/features`)
 
-const order = ['data','utils','socketUtil','rot','dynamic_reload','RouteTils'];
+const order = ['data','utils','rot','dynamic_reload','RouteTils',"MouseUngrab", "FailsafeManager"];
 
 order.forEach(file => {
     try {
@@ -19,20 +19,4 @@ features.listFiles().forEach((file) => {
     } catch(err) {
         ChatLib.chat(`${file.getName()} ERROR!: ${err}`)
     }
-})
-
-function getModuleVersion() {
-    return JSON.parse(FileLib.read("Floyd", "metadata.json")).version;
-}
-
-let s = `Floyd Client v${getModuleVersion()}`
-let fps = `FPS: ${Client.getMinecraft().func_175610_ah()}`
-
-register('step', () => {
-    fps = `FPS: ${Client.getMinecraft().func_175610_ah()}`
-}).setFps(1);
-
-register('renderOverlay', () => {
-    Renderer.drawString(s, Renderer.screen.getWidth() - 5 - Renderer.getStringWidth(s), 5, true)
-    Renderer.drawString(fps, Renderer.screen.getWidth() - 5 - Renderer.getStringWidth(fps), 15, true)
 })

@@ -109,7 +109,7 @@ function setSlot(index) {
 }
 
 function swapFromName(items) {
-    index = Player?.getInventory()?.getItems()?.findIndex(item => item?.getName()?.toLowerCase()?.includes(items))
+    index = Player?.getInventory()?.getItems()?.findIndex(item => item?.getName()?.toLowerCase()?.includes(items.toLowerCase()))
     if (index < 0 || index > 8) {
         ChatLib.chat(`${prefix} ${items} -> Not found in hotbar.`)
         return false;

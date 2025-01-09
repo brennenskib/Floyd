@@ -25,7 +25,7 @@ const removeControlCodes = (str) => { return str.replace(/[\x00-\x1F\x7F]/g, '')
 let openedChests = 0;
 
 register("packetReceived", (packet, event) => {
-    if(!inDungeon || !equalsOneOf(removeControlCodes(packet.func_179840_c().func_150260_c()), "Chest", "Large Chest")) return;
+    if(!isInDungeon() || !equalsOneOf(removeControlCodes(packet.func_179840_c().func_150260_c()), "Chest", "Large Chest")) return;
     Client.sendPacket(new C0DPacketCloseWindow(packet.func_148901_c()));
     openedChests++;
     cancel(event);

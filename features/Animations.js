@@ -13,5 +13,8 @@ FloydRegister('tick', () => {
 })
 
 FloydRegister('packetReceived', (packet, event) => {
-    if(!packet.func_148977_d()) cancel(event);
+    if(
+        !packet.func_148977_d() && 
+        packet.func_148978_c() == Player.getPlayer().field_145783_c
+    ) cancel(event);
 }).setFilteredClass(serverAnimationPacket.class)

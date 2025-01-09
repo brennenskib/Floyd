@@ -1,6 +1,7 @@
 const FloydKeybind = global.floyd.DynamicReload.FloydKeybind;
 const FloydRegister = global.floyd.DynamicReload.FloydRegister;
 const FloydFailsafes = global.floyd.Failsafe;
+const MouseUngrab = global.floyd.MouseUngrab;
 
 const prefix = global.floyd.utils.prefix;
 const rot = global.floyd.rot;
@@ -72,6 +73,14 @@ const pressKeys = () => {
         keyRight.setState(false);
         enabled = false;
 
+        setTimeout(() => {
+            keyLeft.setState(false);
+            keyAttack.setState(false);
+            keyForward.setState(false);
+            keyRight.setState(false);
+            
+            FloydFailsafes.startFailsafe();
+        }, 500)
         ChatLib.chat(`${prefix} Stopping... In Gui!!`)
     }
 
@@ -188,12 +197,16 @@ keyBind.registerKeyPress(() => {
         keyForward.setState(false);
         keyRight.setState(false);
 
+        MouseUngrab.reGrabMouse();
+
         ChatLib.chat(`${prefix} Disabled Farming Macro.`)
     } else {
         ChatLib.chat(`${prefix} Enabling Farming Macro.`)
         
         Client.settings.getSettings().field_74320_O = 1;
 
+        MouseUngrab.unGrabMouse();
+        
         stopFly(() => {
             rot.toAngles(angles.yaw - Player.getYaw(), angles.pitch - Player.getPitch(), 150, () => {
                 // restoring variables -> add new variables if needed in future !!
@@ -219,18 +232,24 @@ function writeCoords() {
     }), true)
 }
 
-register('worldLoad', () => {
+FloydRegister('worldLoad', () => {
     writeCoords()
 
     Client.scheduleTask(50, () => {
         if(enabled && World.isLoaded()) {
             enabled = false;
+
+            keyLeft.setState(false);
+            keyAttack.setState(false);
+            keyForward.setState(false);
+            keyRight.setState(false);
+            
             FloydFailsafes.startFailsafe();
         }
     })
 })
 
-register('command', () => {
+FloydRegister('command', () => {
     rewarp = getPos();
     writeCoords()
     ChatLib.chat('set rewarp to ' + getPos().toString())

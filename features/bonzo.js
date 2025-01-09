@@ -12,7 +12,7 @@ key.registerKeyPress(() => {
         let ogYaw = Player.getYaw();
         let ogPitch = Player.getPitch();
 
-        rot.toAngles(0, 87.5 - Player.getPitch(), 100, () => {
+        rot.toAngles(0, 75 - Player.getPitch(), 100, () => {
             rightClick()
             jump()
             rot.toAngles(ogYaw - Player.getYaw(), ogPitch - Player.getPitch(), 100)
@@ -22,14 +22,14 @@ key.registerKeyPress(() => {
         let ogYaw = Player.getYaw();
         let ogPitch = Player.getPitch();
 
-        let t = swapFromName("bonzo's")
+        let t = swapFromName("Bonzo's Staff")
         if(!t) return;
 
-        rot.toAngles(0, 87.5 - Player.getPitch(), 100, () => {
+        rot.toAngles(0, 75 - Player.getPitch(), 100, () => {
             rightClick()
-            jump()
-            rot.toAngles(ogYaw - Player.getYaw(), ogPitch - Player.getPitch(), 100)
-            setSlot(ogSlot)
+            rot.toAngles(ogYaw - Player.getYaw(), ogPitch - Player.getPitch(), 100, () => {
+                setSlot(ogSlot)
+            })
         })
     }
 })
