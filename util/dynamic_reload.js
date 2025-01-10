@@ -50,7 +50,7 @@ function FloydRegister(type, func) {
     }
 }
 
-function FloydKeybind(desc, ssss, category = "! FloydPlus v" + JSON.parse(FileLib.read('Floyd', "metadata.json")).version) {
+function FloydKeybind(desc, ssss = Keyboard.KEY_NONE, category = "! FloydPlus v" + JSON.parse(FileLib.read('Floyd', "metadata.json")).version) {
     let key = new KeyBind(desc, ssss, category);
     keys.push(key);
     return key;
@@ -102,6 +102,20 @@ register('worldLoad', () => {
     onWorldLoad.forEach(func => {
         func();
     }) 
+})
+
+register('gameUnload', () => {
+    FloydUnload()
+
+    onWorldLoad.forEach(reg => {
+        reg.unregister()
+        reg = null;
+    })
+
+    onTick.forEach(reg => {
+        reg.unregister()
+        reg = null;
+    })
 })
 
 global.floyd.DynamicReload = { 
