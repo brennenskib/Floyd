@@ -39,7 +39,7 @@ FloydRegister("packetReceived", (packet, event) => {
 
             // set slot
             Thread.sleep(150)
-            setSlot(0)
+            setSlot(swordSlot)
             ChatLib.chat(`${prefix} Waiting ${tickDelay}t/${delay}ms Before Wishing...`);
 
             // wait delay and drop item -> func_71040_bB == dropOneItem(false)
