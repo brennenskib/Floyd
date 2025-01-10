@@ -21,32 +21,43 @@ let swordSlot = 0;
 let first = false;
 let second = false;
 
+let tickDelay = 20;
+let delay = tickDelay*50
+
 FloydRegister("packetReceived", (packet, event) => {
     if(!shouldOpen) return;
     unpressAllMovementKeys()
     new Thread(() => {
         if(!first && !second) {
+            // set wardrobe slot
             Thread.sleep(150)
             Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 35 + mastiffSlot, 0, 0, null, 0));
 
+            // close wardrobe
             Thread.sleep(150)
             Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 49, 0, 0, null, 0));
 
+            // set slot
             Thread.sleep(150)
             setSlot(0)
+            ChatLib.chat(`${prefix} Waiting ${tickDelay}t/${delay}ms Before Wishing...`);
 
-            Thread.sleep(250)
+            // wait delay and drop item -> func_71040_bB == dropOneItem(false)
+            Thread.sleep(delay + 150)
             Player.getPlayer()?.func_71040_bB(false)
             ChatLib.command("wardrobe")
 
             first = true;
         } else if(first && !second) {
+            // swap back
             Thread.sleep(150)
             Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 35 + ogArmourSlot, 0, 0, null, 0));
 
+            // close gui
             Thread.sleep(150)
             Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 49, 0, 0, null, 0));
 
+            // wait before allowing gui's to render again
             Thread.sleep(150)
             ChatLib.chat(`${prefix} Finished Mastiff Wish!`)
 
