@@ -1,5 +1,5 @@
 const obj = {
-    Toggle_Sprint: false,
+    Toggle_Sprint: true,
     Fov_Increase: false,
     WTap: false,
     FovIncreaseAmount: 7.5,

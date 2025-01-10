@@ -1,9 +1,9 @@
 const { FloydRegister, FloydKeybind} = global.floyd.DynamicReload;
-const { prefix, unpressAllMovementKeys, setSlot } = global.floyd.utils;
+const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
 
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
-
+const C0DPacketCloseWindow = Java.type("net.minecraft.network.play.client.C0DPacketCloseWindow")
 const key = new FloydKeybind("Mastiff Wish")
 
 let shouldOpen = false;
@@ -21,46 +21,31 @@ let swordSlot = 0;
 let first = false;
 let second = false;
 
-let tickDelay = 20;
+let tickDelay = 50;
 let delay = tickDelay*50
+
+function sendPacket(packet) {
+    Client.sendPacket(packet);
+}
 
 FloydRegister("packetReceived", (packet, event) => {
     if(!shouldOpen) return;
-    unpressAllMovementKeys()
     new Thread(() => {
         if(!first && !second) {
-            // set wardrobe slot
-            Thread.sleep(150)
-            Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 35 + mastiffSlot, 0, 0, null, 0));
-
-            // close wardrobe
-            Thread.sleep(150)
-            Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 49, 0, 0, null, 0));
-
-            // set slot
-            Thread.sleep(150)
-            setSlot(swordSlot)
-            ChatLib.chat(`${prefix} Waiting ${tickDelay}t/${delay}ms Before Wishing...`);
-
-            // wait delay and drop item -> func_71040_bB == dropOneItem(false)
+            Thread.sleep(50)
+            sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 35 + mastiffSlot, 0, 0, null, 0));
+            Thread.sleep(50)
+            Client?.currentGui?.close()
             Thread.sleep(delay + 150)
             Player.getPlayer()?.func_71040_bB(false)
             ChatLib.command("wardrobe")
-
             first = true;
         } else if(first && !second) {
-            // swap back
-            Thread.sleep(150)
-            Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 35 + ogArmourSlot, 0, 0, null, 0));
-
-            // close gui
-            Thread.sleep(150)
-            Client.sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 49, 0, 0, null, 0));
-
-            // wait before allowing gui's to render again
-            Thread.sleep(150)
+            sendPacket(new C0EPacketClickWindow(packet.func_148901_c(), 35 + ogArmourSlot, 0, 0, null, 0));
+            Thread.sleep(50)
+            Client?.currentGui?.close()
+            Thread.sleep(50)
             ChatLib.chat(`${prefix} Finished Mastiff Wish!`)
-
             second = true;
             shouldOpen = false;
         } else if(first && second) {
@@ -79,12 +64,18 @@ register("renderOverlay", () => {
 function start() {
     if(!World.isLoaded() || !Server?.getIP()?.toLowerCase()?.includes('hypixel')) return;
     ChatLib.chat(`${prefix} Mastiff Wishing`)
-    ChatLib.command("wardrobe")
-    shouldOpen = true;
-    first = false;
-    second = false;
+    setSlot(swordSlot)
+    Client.scheduleTask(1, () => {
+        ChatLib.command("wardrobe")
+        shouldOpen = true;
+        first = false;
+        second = false;
+    })
 }
 
+register('tick', () => {
+    if(shouldOpen && Client.isInGui()) pressAllPressedMovementKeys()
+})
 key.registerKeyPress(() => {
     start();
 })
