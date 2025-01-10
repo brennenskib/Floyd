@@ -71,6 +71,11 @@ FloydRegister("packetReceived", (packet, event) => {
 
 }).setFilteredClass(S2DPacketOpenWindow)
 
+register("renderOverlay", () => {
+    if(!shouldOpen) return;
+    Renderer.drawString("Mastiff Wishing", Renderer.screen.getWidth()/2 - (Renderer.getStringWidth("Mastiff Wishing") / 2), Renderer.screen.getHeight()/2, true)
+})
+
 function start() {
     if(isInDungeon() || !World.isLoaded() || !Server?.getIP()?.toLowerCase()?.includes('hypixel')) return;
     ChatLib.chat(`${prefix} Mastiff Wishing`)
