@@ -1,5 +1,5 @@
 const { FloydRegister, FloydKeybind} = global.floyd.DynamicReload;
-const { prefix, unpressAllMovementKeys, isInDungeon, setSlot } = global.floyd.utils;
+const { prefix, unpressAllMovementKeys, setSlot } = global.floyd.utils;
 
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
@@ -77,7 +77,7 @@ register("renderOverlay", () => {
 })
 
 function start() {
-    if(isInDungeon() || !World.isLoaded() || !Server?.getIP()?.toLowerCase()?.includes('hypixel')) return;
+    if(!World.isLoaded() || !Server?.getIP()?.toLowerCase()?.includes('hypixel')) return;
     ChatLib.chat(`${prefix} Mastiff Wishing`)
     ChatLib.command("wardrobe")
     shouldOpen = true;
