@@ -24,7 +24,7 @@ let cacheRewarp = JSON.parse(FileLib.read("Floyd", "farming_macro_data.json"));
 
 let rewarp = cacheRewarp.set ? cacheRewarp.coords : { x: false, y: false, z: false };
 let last = { x: false, y: false, z: false };
-let angles = { yaw: 0.0720, pitch: 35 };
+let angles = { yaw: 0.0720, pitch: 35.0720 };
 
 let direction = left;
 let lastDirection = left;
@@ -44,24 +44,25 @@ const getMotion = () => {
         last.y = y
         last.z = z
 
-        return false;
+        return 1;
     } else {
+        /*
         let x = Math.round(Player.getX())
         let y = Math.round(Player.getY())
         let z = Math.round(Player.getZ())
 
-        let xChange = x - last.x
-        let yChange = y - last.y
-        let zChange = z - last.z
+        let xChange = Math.abs(x) - Math.abs(last.x)
+        let yChange = Math.abs(y) - Math.abs(last.y)
+        let zChange = Math.abs(z) - Math.abs(last.z)
 
         last.x = x;
         last.y = y;
         last.z = z;
 
-        let change = Math.abs(xChange + yChange + zChange) * 100;
+        let change = (xChange + yChange + zChange) * 10000;
         change += 1;
-
-        return change;
+        */
+        return -20+((Math.abs(Player.getMotionX()) + Math.abs(Player.getMotionY()) + Math.abs(Player.getMotionZ()))*1000)+1;
     }
 }
 
@@ -136,7 +137,7 @@ const step = FloydRegister('step', () => {
     } else {
         if(!mot) return;
         else {
-            if(mot == 1) {
+            if(Math.round(mot) <= 1) {
                 if(direction == left) {
                     lastDirection = left;
                     direction = forward;

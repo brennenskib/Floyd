@@ -1,4 +1,4 @@
-let prefix = `&l&8Floyd&o&0Plus &r&l&f>&r&f`
+let prefix = `&l&8Floyd &r&l&f>&r&f`
 
 const KeyBinding = Java.type("net.minecraft.client.settings.KeyBinding");
 
@@ -67,6 +67,7 @@ function HClip() {
 
 const sneakBind = new KeyBind(Client.getMinecraft().field_71474_y.field_74311_E);
 const jumpBind = new KeyBind(Client.getMinecraft().field_71474_y.field_74314_A);
+
 const sneak = () => {
     sneakBind.setState(true)
     Client.scheduleTask(2, () => { sneakBind.setState(false) })

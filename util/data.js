@@ -3,14 +3,15 @@ const obj = {
     Fov_Increase: false,
     WTap: false,
     FovIncreaseAmount: 7.5,
-    Fullbright: false,
-    Vertical_Chine: false,
+    Fullbright: true,
+    Vertical_Chine: true,
     Barphase: true,
     Thyst_Hider: false,
-    Positional: false,
+    Positional: true,
     blackListUrl: 'test.com',
     Secret_Aura: false,
-    NoStopCobble: false
+    NoStopCobble: false,
+    splashText: true
 }
 
 global.floyd.obj = obj

@@ -30,7 +30,8 @@ ConatusRegister('renderWorld', () => {
 */
 
 FloydRegister('worldLoad', () => {
-    if(!obj.FullBright) Client.getSettings().getSettings().field_74333_Y = 1;
-    else Client.getSettings().getSettings().field_74333_Y = 1000000;
+    //if(!obj.FullBright) Client.getSettings().getSettings().field_74333_Y = 1;
+    /*else*/
+    Client.getSettings().getSettings().field_74333_Y = 1000000;
     Client.getSettings().getSettings().func_74303_b();
 })

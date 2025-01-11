@@ -1,5 +1,6 @@
 const { FloydRegister, FloydKeybind} = global.floyd.DynamicReload;
 const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
+const toggle = global.floyd.ToggleNDMS
 
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
@@ -21,7 +22,7 @@ let swordSlot = 0;
 let first = false;
 let second = false;
 
-let tickDelay = 50;
+let tickDelay = 20;
 let delay = tickDelay*50
 
 function sendPacket(packet) {
@@ -51,6 +52,7 @@ FloydRegister("packetReceived", (packet, event) => {
         } else if(first && second) {
             Client.currentGui.close()
             shouldOpen = false;
+            toggle(true)
         }
     }).start()
 
@@ -65,6 +67,7 @@ function start() {
     if(!World.isLoaded() || !Server?.getIP()?.toLowerCase()?.includes('hypixel')) return;
     ChatLib.chat(`${prefix} Mastiff Wishing`)
     setSlot(swordSlot)
+    toggle(false)
     Client.scheduleTask(1, () => {
         ChatLib.command("wardrobe")
         shouldOpen = true;

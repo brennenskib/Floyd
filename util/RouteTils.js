@@ -1,3 +1,4 @@
+/*
 const FloydRegister = global.floyd.DynamicReload.FloydRegister;
 const rot = global.floyd.rot;
 const { pressAllPressedMovementKeys, sneak, unpressAllMovementKeys, stop } = global.floyd.utils;
@@ -13,6 +14,7 @@ RightClickMouse.setAccessible(true)
 class RouteTils {
     constructor() {
         this.clicked = [];
+        this.shouldSecretAura = true;
     }
 
     AotvToPos(pos) {
@@ -53,9 +55,12 @@ class RouteTils {
         return [ yaw, pitch ]
     }
 
-    shouldSecretAura = true;
 
     secretAura() {
+        if(!World.isLoaded()) return;
+        ChatLib.chat(this.shouldSecretAura)
+        if(!this.shouldSecretAura) return;
+        this.shouldSecretAura = false;
         let playerPos = new BlockPoss(Math.floor(Player.getX()), Math.floor(Player.getY()), Math.floor(Player.getZ()))
         
         let iterable = BP.func_177980_a(
@@ -78,17 +83,25 @@ class RouteTils {
         
         if(cacheBlock instanceof Block) {
             if(Client.isInGui()) {
-                return Client?.currentGui?.close()
+                this.shouldSecretAura = true;
+                Client?.currentGui?.close()
+            } else {
+                unpressAllMovementKeys();
+                stop();
+                
+                let original = rot.getVector(Player.getYaw(), Player.getPitch());
+
+                rot.lookAt(new net.minecraft.util.Vec3(cacheBlock.getX()+0.5, cacheBlock.getY()+0.5, cacheBlock.getZ()+0.5), 100, 6, function() {
+                    interact(cacheBlock.pos.toMCBlock(), cacheBlock);
+                    pressAllPressedMovementKeys();
+                    Client.scheduleTask(1, () => {
+                        rot.lookAt(original, 100, 6, () => {
+                            this.shouldSecretAura = true;
+                        })
+                    })
+                })
             }
-
-            unpressAllMovementKeys();
-            stop();
-
-            rot.snapLook(new net.minecraft.util.Vec3(cacheBlock.getX()+0.5, cacheBlock.getY()+0.5, cacheBlock.getZ()+0.5), 50, function() {
-                interact(cacheBlock.pos.toMCBlock(), cacheBlock);
-                pressAllPressedMovementKeys();
-            })
-        } else return;
+        } else this.shouldSecretAura = true;
     }
 }
 
@@ -111,14 +124,11 @@ function interact(pos, test) {
     
     Client.getMinecraft().field_71442_b.func_78765_e()
     localClicked.push(test.toString())
-
-    setTimeout(() => {
-        if(Client.isInGui()) Client.currentGui.close();
-    }, 100)
 }
 
 FloydRegister('worldLoad', () => {
     localClicked = [];
 });
 
-global.floyd.RouteTils = RouteTils;
+global.floyd.RouteTils = new RouteTils();
+*/
