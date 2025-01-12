@@ -31,7 +31,7 @@ features.listFiles().forEach((file) => {
     if(name == "NoDropMySlots.js" || name == "MastiffWishKeybind.js") return;
     else {
         try {
-            eval(FileLib.read(global.floyd = {};, `features/${file.getName()}`))
+            eval(FileLib.read(FloydPath, `features/${file.getName()}`))
         } catch(err) {
             ChatLib.chat(`${file.getName()} ERROR!: ${err}`)
         }
