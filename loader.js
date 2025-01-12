@@ -7,7 +7,7 @@ const order = ['data','utils','rot','dynamic_reload','RouteTils',"MouseUngrab", 
 const otherOrder = ['NoDropMySlots', 'MastiffWishKeybind'];
 
 const FloydPath = FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd"
-
+global.floyd.Path =  FloydPath
 order.forEach(file => {
     try {
         eval(FileLib.read("Floyd", `util/${file}.js`));
