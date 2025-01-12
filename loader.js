@@ -1,3 +1,8 @@
+function getPath() {
+    return FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd"
+}
+
+
 const FloydPath = FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd"
 
 const File = Java.type("java.io.File");
