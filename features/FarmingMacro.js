@@ -20,7 +20,7 @@ const left = 'left';
 const right = 'right';
 const forward = 'forward';
 
-let cacheRewarp = JSON.parse(FileLib.read(global.floyd.Path, "farming_macro_data.json"));
+let cacheRewarp = JSON.parse(FileLib.read(global.floyd.getPath(), "farming_macro_data.json"));
 
 let rewarp = cacheRewarp.set ? cacheRewarp.coords : { x: false, y: false, z: false };
 let last = { x: false, y: false, z: false };
@@ -211,7 +211,7 @@ keyBind.registerKeyPress(() => {
 function writeCoords() {
     let set = (rewarp[0] !== false && rewarp[1] !== false && rewarp[2] !== false)
 
-    FileLib.write(global.floyd.Path, "farming_macro_data.json", JSON.stringify({
+    FileLib.write(global.floyd.getPath(), "farming_macro_data.json", JSON.stringify({
         set: set,
         coords: rewarp
     }), true)
