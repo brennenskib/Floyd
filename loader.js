@@ -6,7 +6,7 @@ const features = new File(`${Client.getMinecraft().field_71412_D.getPath()}/conf
 const order = ['data','utils','rot','dynamic_reload','RouteTils',"MouseUngrab", "FailsafeManager"];
 const otherOrder = ['NoDropMySlots', 'MastiffWishKeybind'];
 
-const FloydPath = FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? 
+const FloydPath = FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd"
 
 order.forEach(file => {
     try {
