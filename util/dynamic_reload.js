@@ -50,7 +50,7 @@ function FloydRegister(type, func) {
     }
 }
 
-function FloydKeybind(desc, ssss = Keyboard.KEY_NONE, category = "! FloydPlus v" + JSON.parse(FileLib.read('Floyd', "metadata.json")).version) {
+function FloydKeybind(desc, ssss = Keyboard.KEY_NONE, category = "! FloydPlus v" + JSON.parse(FileLib.read(global.floyd.Path, "metadata.json")).version) {
     let key = new KeyBind(desc, ssss, category);
     keys.push(key);
     return key;
