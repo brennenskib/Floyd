@@ -11,7 +11,7 @@ const order = ['data','utils','rot','dynamic_reload','RouteTils',"MouseUngrab", 
 const otherOrder = ['NoDropMySlots', 'MastiffWishKeybind'];
 
 global.floyd = {};
-global.floyd.Path = FloydPath;
+global.floyd.getPath = getPath;
 
 order.forEach(file => {
     try {
