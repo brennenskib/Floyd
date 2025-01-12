@@ -8,7 +8,7 @@ features.listFiles().forEach(file => {
 })
 order.forEach(file => {
     try {
-        eval(FileLib.read("Floyd", `util/${file}.js`));
+        eval(FileLib.read(global.floyd.Path, `util/${file}.js`));
     } catch(err) {
         ChatLib.chat(`${file} ERROR!: ${err}`)
     }
