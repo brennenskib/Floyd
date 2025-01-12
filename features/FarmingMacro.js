@@ -46,22 +46,6 @@ const getMotion = () => {
 
         return 1;
     } else {
-        /*
-        let x = Math.round(Player.getX())
-        let y = Math.round(Player.getY())
-        let z = Math.round(Player.getZ())
-
-        let xChange = Math.abs(x) - Math.abs(last.x)
-        let yChange = Math.abs(y) - Math.abs(last.y)
-        let zChange = Math.abs(z) - Math.abs(last.z)
-
-        last.x = x;
-        last.y = y;
-        last.z = z;
-
-        let change = (xChange + yChange + zChange) * 10000;
-        change += 1;
-        */
         return -20+((Math.abs(Player.getMotionX()) + Math.abs(Player.getMotionY()) + Math.abs(Player.getMotionZ()))*1000)+1;
     }
 }
@@ -227,7 +211,7 @@ keyBind.registerKeyPress(() => {
 function writeCoords() {
     let set = (rewarp[0] !== false && rewarp[1] !== false && rewarp[2] !== false)
 
-    FileLib.write("Floyd", "farming_macro_data.json", JSON.stringify({
+    FileLib.write(global.floyd.Path, "farming_macro_data.json", JSON.stringify({
         set: set,
         coords: rewarp
     }), true)
