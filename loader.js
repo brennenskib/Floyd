@@ -2,8 +2,7 @@ function getPath() {
     return FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd";
 }
 
-
-const FloydPath = FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd"
+const FloydPath = getPath();
 
 const File = Java.type("java.io.File");
 const features = new File(`${Client.getMinecraft().field_71412_D.getPath()}/config/ChatTriggers/modules/${FloydPath}/features`)
