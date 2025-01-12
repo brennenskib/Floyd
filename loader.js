@@ -36,5 +36,3 @@ features.listFiles().forEach((file) => {
         }
     }
 })
-
-global.floyd.Path =  FloydPath
