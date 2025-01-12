@@ -1,7 +1,7 @@
 global.floyd = {};
 
 const File = Java.type("java.io.File");
-const features = new File(`${Client.getMinecraft().field_71412_D.getPath()}/config/ChatTriggers/modules/Floyd/features`)
+const features = new File(`${Client.getMinecraft().field_71412_D.getPath()}/config/ChatTriggers/modules/${FloydPath}/features`)
 
 const order = ['data','utils','rot','dynamic_reload','RouteTils',"MouseUngrab", "FailsafeManager"];
 const otherOrder = ['NoDropMySlots', 'MastiffWishKeybind'];
