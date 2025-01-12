@@ -11,7 +11,7 @@ global.floyd.Path = FloydPath;
 
 order.forEach(file => {
     try {
-        eval(FileLib.read("Floyd", `util/${file}.js`));
+        eval(FileLib.read(FloydPath, `util/${file}.js`));
     } catch(err) {
         ChatLib.chat(`${file} ERROR!: ${err}`)
     }
@@ -19,7 +19,7 @@ order.forEach(file => {
 
 otherOrder.forEach(file => {
     try {
-        eval(FileLib.read("Floyd", `features/${file}.js`));
+        eval(FileLib.read(FloydPath, `features/${file}.js`));
     } catch(err) {
         ChatLib.chat(`${file} ERROR!: ${err}`)
     }
