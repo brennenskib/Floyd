@@ -8,13 +8,11 @@ FloydRegister('worldLoad', () => { // Set player
 })
 
 FloydRegister('tick', () => {
-    return;
     if(!swinger) return;
     swinger.field_82175_bq = false;
 })
 
 FloydRegister('packetReceived', (packet, event) => {
-    return;
     if(
         !packet.func_148977_d() && 
         packet.func_148978_c() == Player.getPlayer().field_145783_c
