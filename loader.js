@@ -8,6 +8,7 @@ const otherOrder = ['NoDropMySlots', 'MastiffWishKeybind'];
 
 global.floyd = {};
 global.floyd.Path = FloydPath;
+
 order.forEach(file => {
     try {
         eval(FileLib.read(FloydPath, `util/${file}.js`));
