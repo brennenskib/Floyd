@@ -6,7 +6,7 @@ let javaInt = Java.type("java.lang.Integer");
 
 FloydRegister("packetReceived", (packet) => {
     if(!obj.Vertical_Chine) return;
-    if(packet.func_149412_c() !== Player.getPlayer().func_145782_y() || !Player.getHeldItem()) return;
+    if(packet.func_149412_c() !== Player?.getPlayer()?.func_145782_y() || !Player.getHeldItem()) return;
     let item = Player?.getHeldItem()?.getName()?.toLowerCase()
 
     let motX = S12.class.getDeclaredField("field_149415_b")
