@@ -22,7 +22,9 @@ class RetardTerms {
     }
 
     onRender() {
-        this.renderTrigger
+        if(this.data.inTerminal) {
+            cancel(event);
+        }
     }
 
     onCloseWindow() {
