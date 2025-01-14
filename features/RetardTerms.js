@@ -21,7 +21,7 @@ class RetardTerms {
         this.renderTrigger.unregister(); 
     }
 
-    onRender() {
+    onRender(event) {
         if(this.data.inTerminal) {
             cancel(event);
         }
