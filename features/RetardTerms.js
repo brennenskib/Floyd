@@ -22,7 +22,7 @@ class RetardTerms {
     }
 
     onRender() {
-    this.renderTrigger
+        this.renderTrigger
     }
 
     onCloseWindow() {
