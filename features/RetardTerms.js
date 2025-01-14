@@ -138,6 +138,6 @@ class RetardTerms {
             while (this.queue.length) queue.pop();
             this.colourSolver();
             this.data.clicked = false;
-        }, Settings.terminalsTimeout);
+        }, 150);
     }
 }
