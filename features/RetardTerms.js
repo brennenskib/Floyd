@@ -26,7 +26,13 @@ class RetardTerms {
             this.onOpenWindow(title, windowId, hasSlots, slots);
         }).setFilteredClass(S2DPacketOpenWindow)
 
+        this.closeWindowTrigger = FloydRegister("packetReceived", (packet, event) => {
+
+        })
+
         this.renderTrigger.unregister(); 
+        this.openWindowTrigger.unregister();
+        this.closeWindowTrigger.unregister();
     }
 
     onRender(event) {
