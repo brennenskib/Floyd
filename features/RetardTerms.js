@@ -125,7 +125,7 @@ class TerminalHandler {
     }
 
     randomDelay() {
-        return Math.floor(Math.random() * (150) + 150);
+        return Math.floor(Math.random() * (50) + 150);
     }
 }
 
