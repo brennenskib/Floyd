@@ -132,7 +132,8 @@ class RetardTerms {
         this.data.clicked = true;
 
         Client.sendPacket(new C0EPacketClickWindow(cwid, slot, button, 0, null, 0));
-        const initialWindowId = cwid;
+        const initialWindowId = this.data.ID;
+
         setTimeout(() => {
             if (!inTerminal || initialWindowId !== cwid) return;
             while (queue.length) queue.pop();
