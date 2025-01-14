@@ -26,6 +26,7 @@ class TerminalHandler {
             if (obj.AutoTerms/* && isFloor7()*/) {
                 if (!(Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)) this.exitTerm() 
                 this.getCorrectPanes()
+                pressAllPressedMovementKeys()
             }
         })
 
