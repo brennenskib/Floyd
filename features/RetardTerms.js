@@ -93,7 +93,7 @@ class TerminalHandler {
                 while (this.inTerm) {
                     let slot = this.onTimeSolver() ?? 0;
                     if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
-                        Client.getMinecraft().field_71442_b.func_78753_a(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer());
+                        this.click(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer());
                         Thread.sleep(750);
                         stage += 9;
                     }
@@ -126,7 +126,7 @@ class TerminalHandler {
             this.correctPanes.forEach((slot) => {
                 if (windowId <= Player.getPlayer().field_71070_bA.field_75152_c) windowId = Player.getPlayer().field_71070_bA.field_75152_c;
                 if (Client.currentGui.get() == null) return;
-                Client.getMinecraft().field_71442_b.func_78753_a(windowId, slot, 2, 3, Player.getPlayer());
+                this.click(windowId, slot, 2, 3, Player.getPlayer());
                 Thread.sleep(this.randomDelay());
                 windowId++;
             });
