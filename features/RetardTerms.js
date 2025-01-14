@@ -29,12 +29,18 @@ class RetardTerms {
         }).setFilteredClass(S2DPacketOpenWindow)
 
         this.closeWindowTrigger = FloydRegister("packetReceived", (packet, event) => {
+            this.onCloseWindow();
+        }).setFilteredClass(S2EPacketCloseWindow);
 
-        })
+        this.closeWindowTrigger2 = FloydRegister("packetSent", () => {
+            this.onCloseWindow();
+        }).setFilteredClass(C0DPacketCloseWindow).unregister();
 
         this.renderTrigger.unregister(); 
         this.openWindowTrigger.unregister();
         this.closeWindowTrigger.unregister();
+        this.closeWindowTrigger.unregister();
+        this.closeWindowTrigger2.unregister();
     }
 
     onRender(event) {
