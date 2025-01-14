@@ -1,3 +1,7 @@
+const FloydRegister = global.floyd.DynamicReload.FloydRegister;
+const obj = global.floyd.obj;
+const isFloor7 = global.floyd.utils.isFloor7;
+
 class TerminalHandler {
     constructor() {
         this.inTerm = false;
@@ -10,8 +14,16 @@ class TerminalHandler {
             "lapis": "blue lapis",
             "cocoa": "brown cocoa"
         };
-        
+
         this.colorCycle = [4, 13, 11, 14, 1];
+
+        FloydRegister("tick", () => {
+            if (obj.AutoTerms && floor == 7) {
+                if (!(Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)) exitTerm() 
+                else getCorrectPanes()
+            }
+    
+        })
     }
 
     mode(array) {
@@ -118,4 +130,4 @@ class TerminalHandler {
     }
 }
 
-export default TerminalHandler;
+new TerminalHandler();
