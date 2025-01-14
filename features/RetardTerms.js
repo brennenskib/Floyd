@@ -18,9 +18,9 @@ class TerminalHandler {
         this.colorCycle = [4, 13, 11, 14, 1];
 
         FloydRegister("tick", () => {
-            if (obj.AutoTerms && floor == 7) {
-                if (!(Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)) exitTerm() 
-                else getCorrectPanes()
+            if (obj.AutoTerms && isFloor7()) {
+                if (!(Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)) this.exitTerm() 
+                else this.getCorrectPanes()
             }
     
         })
