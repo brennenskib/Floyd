@@ -131,11 +131,11 @@ class RetardTerms {
         if (slot === undefined || button === undefined) return;
         this.data.clicked = true;
 
-        Client.sendPacket(new C0EPacketClickWindow(cwid, slot, button, 0, null, 0));
+        Client.sendPacket(new C0EPacketClickWindow(this.data.ID, slot, button, 0, null, 0));
         const initialWindowId = this.data.ID;
 
         setTimeout(() => {
-            if (!inTerminal || initialWindowId !== cwid) return;
+            if (!inTerminal || initialWindowId !== this.data.ID) return;
             while (queue.length) queue.pop();
             solve();
             this.data.clicked = false;
