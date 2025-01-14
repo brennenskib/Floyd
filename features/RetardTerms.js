@@ -130,7 +130,6 @@ class RetardTerms {
     clickSlot(slot, button) {
         if (slot === undefined || button === undefined) return;
         this.data.clicked = true;
-
         Client.sendPacket(new C0EPacketClickWindow(this.data.ID, slot, button, 0, null, 0));
         const initialWindowId = this.data.ID;
 
