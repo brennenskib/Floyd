@@ -50,6 +50,7 @@ class RetardTerms {
         this.closeWindowTrigger.unregister();
         this.closeWindowTrigger.unregister();
         this.closeWindowTrigger2.unregister();
+        this.setSlotTrigger.unregister();
     }
 
     onRender(event) {
