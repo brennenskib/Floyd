@@ -32,6 +32,7 @@ class TerminalHandler {
         FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
             if(this.inTerm) {
                 cancel(event);
+                pressAllPressedMovementKeys()
             }
         });
     }
