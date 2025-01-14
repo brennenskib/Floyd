@@ -47,7 +47,7 @@ class TerminalHandler {
         
         if(slot == 33) {
             if(Client?.isInGui()) {
-                Client?.currentGui?.close()
+                Client.scheduleTask(1,() => { Client?.currentGui?.close() })
             }
         }
     }
