@@ -1,13 +1,7 @@
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow")
 
-const { FloydRegister, FloydKeybind} = global.floyd.DynamicReload;
+const { FloydRegister } = global.floyd.DynamicReload;
 const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
-
-FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
-    if(shouldOpen) {
-        cancel(event);
-    }
-})
 
 class RetardTerms {
     constructor() {
