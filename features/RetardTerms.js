@@ -1,3 +1,4 @@
+/*
 const FloydRegister = global.floyd.DynamicReload.FloydRegister;
 const obj = global.floyd.obj;
 const isFloor7 = global.floyd.utils.isFloor7;
@@ -23,7 +24,7 @@ class TerminalHandler {
         this.colorCycle = [4, 13, 11, 14, 1];
 
         FloydRegister("tick", () => {
-            if (obj.AutoTerms/* && isFloor7()*/) {
+            if (obj.AutoTerms && isFloor7()) {
                 if (!(Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)) this.exitTerm() 
                 this.getCorrectPanes()
             }
@@ -153,3 +154,4 @@ class TerminalHandler {
 }
 
 new TerminalHandler();
+*/
