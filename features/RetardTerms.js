@@ -96,11 +96,11 @@ class RetardTerms {
             this.slots[slot] = null;
         }
         if (this.slots.length === windowSize) {
-            solve();
+            this.colourSolver();
             if (queue.length > 0) {
                 if (queue.every(queued => solution.includes(queued[0]))) {
                     queue.forEach(queued => predict(queued[0], queued[1]));
-                    click(queue[0][0], queue[0][1]);
+                    this.clickSlot(queue[0][0], queue[0][1]);
                     queue.shift();
                 } else {
                     while (queue.length) queue.shift();
@@ -125,6 +125,10 @@ class RetardTerms {
           .map(slot => slot.slot)[0]; 
       
         return nextSlot; 
+    }
+
+    clickSlot(slot, button) {
+
     }
 
     onTick
