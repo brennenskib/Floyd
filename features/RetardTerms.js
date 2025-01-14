@@ -3,17 +3,14 @@ class RetardTerms {
         this.ColourTitle = /^Select all the ([\w ]+) items!$/;
 
         this.data = {};
+
         this.slots = [];
         this.queue = [];
     }
 
     onCloseWIndow() {
-        inTerminal = false;
-        while (this.queue.length) queue.shift();
-        closeWindow.removeListener(closeWindowListener);
-        packetSetSlot.removeListener(setSlotListener);
-        clickTrigger.unregister();
-        renderTrigger.unregister();
+        this.data.inTerminal = false;
+        while (this.queue.length) this.queue.shift();
     }
 
     onOpenWindow(title, windowId, _0, slotCount) {
