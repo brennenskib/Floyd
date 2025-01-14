@@ -135,7 +135,7 @@ class RetardTerms {
 
         setTimeout(() => {
             if (!this.data.inTerminal || initialWindowId !== this.data.ID) return;
-            while (queue.length) queue.pop();
+            while (this.queue.length) queue.pop();
             solve();
             this.data.clicked = false;
         }, Settings.terminalsTimeout);
