@@ -38,8 +38,9 @@ class TerminalHandler {
         return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
     }
 
-    click() {
-        Client.getMinecraft().field_71442_b.func_78753_a(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer())
+    click(wid, slot, mbc, m, p) {
+        Client.getMinecraft().field_71442_b.func_78753_a(wid, slot, mbc, m, p)
+        ChatLib.chat(`${prefix} AutoTerms: Clicking Slot ${(slot)}`)
     }
 
     getCorrectPanes() {
