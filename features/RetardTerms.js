@@ -1,5 +1,7 @@
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow")
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
+const S2EPacketCloseWindow = Java.type("net.minecraft.network.play.server.S2EPacketCloseWindow");
+const C0DPacketCloseWindow = Java.type("net.minecraft.network.play.client.C0DPacketCloseWindow");
 
 const { FloydRegister } = global.floyd.DynamicReload;
 const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
