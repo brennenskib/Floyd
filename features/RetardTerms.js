@@ -1,5 +1,3 @@
-import { mode } from "../../utils/mathUtils"
-
 class TerminalHandler {
     constructor() {
         this.inTerm = false;
@@ -12,59 +10,12 @@ class TerminalHandler {
             "lapis": "blue lapis",
             "cocoa": "brown cocoa"
         };
+        
         this.colorCycle = [4, 13, 11, 14, 1];
-
-        this.registerListeners();
     }
 
-    registerListeners() {
-        // Register listeners here
-        packetOpenWindow.addListener(this.openWindowListener.bind(this));
-        packetSetSlot.addListener(this.setSlotListener.bind(this));
-        closeWindow.addListener(this.closeWindowListener.bind(this));
-    }
-
-    openWindowListener(title, windowId, _0, slotCount) {
-        // Open window listener logic
-    }
-
-    closeWindowListener() {
-        this.inTerm = false;
-        while (this.queue.length) this.queue.shift();
-        closeWindow.removeListener(this.closeWindowListener);
-        packetSetSlot.removeListener(this.setSlotListener);
-        this.clickTrigger.unregister();
-        this.renderTrigger.unregister();
-    }
-
-    setSlotListener(itemStack, slot) {
-        if (slot < 0 || slot >= this.windowSize) return;
-
-        if (itemStack?.func_77973_b()) {
-            const item = new Item(itemStack);
-            this.slots[slot] = {
-                slot,
-                id: item.getID(),
-                meta: item.getMetadata(),
-                size: item.getStackSize(),
-                name: ChatLib.removeFormatting(item.getName()),
-                enchanted: item.isEnchanted()
-            };
-        } else {
-            this.slots[slot] = null;
-        }
-        if (this.slots.length === this.windowSize) {
-            this.solve();
-            if (this.queue.length > 0) {
-                if (this.queue.every(queued => this.solution.includes(queued[0]))) {
-                    this.queue.forEach(queued => this.predict(queued[0], queued[1]));
-                    this.click(this.queue[0][0], this.queue[0][1]);
-                    this.queue.shift();
-                } else {
-                    while (this.queue.length) this.queue.shift();
-                }
-            }
-        }
+    mode(array) {
+        return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
     }
 
     getCorrectPanes() {
@@ -105,7 +56,7 @@ class TerminalHandler {
                 this.correctPanes.push(nextStep);
             }
         } else if (inventoryName == "Change all to same color!") {
-            let optimal = mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
+            let optimal = this.mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
             Player.getContainer().getItems().forEach((pane, index) => {
                 if (pane?.getDamage() == 15 || !pane) return;
                 for (let i = 0; i < Math.abs(this.colorCycle.indexOf(optimal) - this.colorCycle.indexOf(pane.getDamage())); i++) this.correctPanes.push(index);
