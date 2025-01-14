@@ -1,5 +1,14 @@
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow")
 
+const { FloydRegister, FloydKeybind} = global.floyd.DynamicReload;
+const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
+
+FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
+    if(shouldOpen) {
+        cancel(event);
+    }
+})
+
 class RetardTerms {
     constructor() {
         this.ColourTitle = /^Select all the ([\w ]+) items!$/;
@@ -8,11 +17,14 @@ class RetardTerms {
 
         this.slots = [];
         this.queue = [];
+
+        
     }
 
     onRender() {
-        
+
     }
+
     onCloseWIndow() {
         this.data.inTerminal = false;
         while (this.queue.length) this.queue.shift();
