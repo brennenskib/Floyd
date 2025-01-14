@@ -40,7 +40,7 @@ class TerminalHandler {
 
     click(wid, slot, mbc, m, p) {
         Client.getMinecraft().field_71442_b.func_78753_a(wid, slot, mbc, m, p)
-        ChatLib.chat(`${prefix} AutoTerms: Clicking Slot ${(slot)}`)
+        ChatLib.chat(`${prefix} AutoTerms: Clicking Slot ${slot}`)
     }
 
     getCorrectPanes() {
