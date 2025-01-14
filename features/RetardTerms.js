@@ -10,14 +10,7 @@ class RetardTerms {
         this.data.ID = windowId;
         const colorsMatch = title.match(/^Select all the ([\w ]+) items!$/);
         if (colorsMatch !== null) {
-            extra = colorsMatch[1].toLowerCase();
-            if (!inTerminal) {
-                closeWindow.addListener(closeWindowListener);
-                packetSetSlot.addListener(setSlotListener);
-                clickTrigger.register();
-                renderTrigger.register();
-            }
-            if (!clicked) openedAt = new Date().getTime();
+            this.data.extra = colorsMatch[1].toLowerCase();
             inTerminal = true;
             clicked = false;
             while (slots.length) slots.pop();
