@@ -1,4 +1,38 @@
 class RetardTerms {
+    constructor() {
+        this.slots = [];
+    }
+
+    setSlotListener(itemStack, slot) {
+        if (slot < 0) return;
+        if (slot >= windowSize) return;
+        if (itemStack?.func_77973_b()) {
+            const item = new Item(itemStack);
+            slots[slot] = {
+                slot,
+                id: item.getID(),
+                meta: item.getMetadata(),
+                size: item.getStackSize(),
+                name: ChatLib.removeFormatting(item.getName()),
+                enchanted: item.isEnchanted()
+            };
+        } else {
+            slots[slot] = null;
+        }
+        if (slots.length === windowSize) {
+            solve();
+            if (queue.length > 0) {
+                if (queue.every(queued => solution.includes(queued[0]))) {
+                    queue.forEach(queued => predict(queued[0], queued[1]));
+                    click(queue[0][0], queue[0][1]);
+                    queue.shift();
+                } else {
+                    while (queue.length) queue.shift();
+                }
+            }
+        }
+    }
+
     colourSolver() {
         const allowedSlots = [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43];
         const replacements = { "light gray": "silver", "wool": "white", "bone": "white", "ink": "black", "lapis": "blue", "cocoa": "brown", "dandelion": "yellow", "rose": "red", "cactus": "green" };
