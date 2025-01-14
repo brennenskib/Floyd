@@ -115,5 +115,5 @@ class RetardTerms {
           .map(slot => slot.slot)[0]; 
       
         return nextSlot; 
-      }
+    }
 }
