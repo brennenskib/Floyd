@@ -1,6 +1,7 @@
 const FloydRegister = global.floyd.DynamicReload.FloydRegister;
 const obj = global.floyd.obj;
 const isFloor7 = global.floyd.utils.isFloor7;
+const prefix = global.floyd.utils.prefix;
 
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
