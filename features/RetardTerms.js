@@ -6,7 +6,7 @@ class RetardTerms {
         this.slots = [];
     }
 
-    closeWindowListener() {
+    onCloseWIndow() {
         inTerminal = false;
         while (queue.length) queue.shift();
         closeWindow.removeListener(closeWindowListener);
@@ -14,7 +14,7 @@ class RetardTerms {
         clickTrigger.unregister();
         renderTrigger.unregister();
     }
-    
+
     onOpenWindow(title, windowId, _0, slotCount) {
         this.data.ID = windowId;
         const colorsMatch = title.match(this.ColourTitle);
