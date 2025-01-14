@@ -2,6 +2,9 @@ const FloydRegister = global.floyd.DynamicReload.FloydRegister;
 const obj = global.floyd.obj;
 const isFloor7 = global.floyd.utils.isFloor7;
 
+const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
+const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
+
 class TerminalHandler {
     constructor() {
         this.inTerm = false;
@@ -23,6 +26,12 @@ class TerminalHandler {
                 this.getCorrectPanes()
             }
         })
+
+        FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
+            if(this.inTerm) {
+                cancel(event);
+            }
+        })        
     }
 
     mode(array) {
