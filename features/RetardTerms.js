@@ -10,11 +10,10 @@ class RetardTerms {
           return name;
         };
       
-        // Filter slots that are valid and not enchanted, matching the desired item color
         const nextSlot = slots
           .filter(slot => slot && allowedSlots.includes(slot.slot) && !slot.enchanted && fixName(slot.name.toLowerCase()).startsWith(extra))
-          .map(slot => slot.slot)[0]; // Get the first valid slot (the "next" slot)
+          .map(slot => slot.slot)[0]; 
       
-        return nextSlot; // Return the next slot
+        return nextSlot; 
       }
 }
