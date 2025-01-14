@@ -6,7 +6,16 @@ class RetardTerms {
         this.slots = [];
     }
 
-    openWindowListener(title, windowId, _0, slotCount) {
+    closeWindowListener() {
+        inTerminal = false;
+        while (queue.length) queue.shift();
+        closeWindow.removeListener(closeWindowListener);
+        packetSetSlot.removeListener(setSlotListener);
+        clickTrigger.unregister();
+        renderTrigger.unregister();
+    }
+    
+    onOpenWindow(title, windowId, _0, slotCount) {
         this.data.ID = windowId;
         const colorsMatch = title.match(this.ColourTitle);
 
