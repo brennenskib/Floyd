@@ -15,7 +15,6 @@ class RetardTerms {
         this.renderTrigger = FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
             this.onRender(event);
         })       
-
         this.renderTrigger.unregister(); 
     }
 
