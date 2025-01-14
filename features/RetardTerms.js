@@ -9,6 +9,7 @@ class RetardTerms {
     openWindowListener(title, windowId, _0, slotCount) {
         this.data.ID = windowId;
         const colorsMatch = title.match(this.ColourTitle);
+        
         if (colorsMatch !== null) {
             this.data.extra = colorsMatch[1].toLowerCase();
             inTerminal = true;
