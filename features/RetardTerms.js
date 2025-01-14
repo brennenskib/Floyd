@@ -136,7 +136,7 @@ class RetardTerms {
         setTimeout(() => {
             if (!this.data.inTerminal || initialWindowId !== this.data.ID) return;
             while (this.queue.length) queue.pop();
-            solve();
+            this.colourSolver();
             this.data.clicked = false;
         }, Settings.terminalsTimeout);
     }
