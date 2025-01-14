@@ -1,87 +1,46 @@
-const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow")
-const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
-const S2EPacketCloseWindow = Java.type("net.minecraft.network.play.server.S2EPacketCloseWindow");
-const C0DPacketCloseWindow = Java.type("net.minecraft.network.play.client.C0DPacketCloseWindow");
-const S2FPacketSetSlot = Java.type("net.minecraft.network.play.server.S2FPacketSetSlot");
+import { Minecraft, data } from "../../settings/settings"
+import { mode } from "../../utils/mathUtils"
 
-const { FloydRegister } = global.floyd.DynamicReload;
-const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
-
-class RetardTerms {
+class TerminalHandler {
     constructor() {
-        this.ColourTitle = /^Select all the ([\w ]+) items!$/;
+        this.inTerm = false;
+        this.correctPanes = [];
+        this.colorList = {
+            "light gray": "silver",
+            "light grey": "silver",
+            "wool": "white wool",
+            "ink": "black ink",
+            "lapis": "blue lapis",
+            "cocoa": "brown cocoa"
+        };
+        this.colorCycle = [4, 13, 11, 14, 1];
 
-        this.data = {};
-
-        this.slots = [];
-        this.queue = [];
-
-        this.renderTrigger = FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
-            this.onRender(event);
-        })       
-
-        this.openWindowTrigger = FloydRegister("packetReceived", (packet, event) => {
-            const title = ChatLib.removeFormatting(packet.func_179840_c().func_150254_d());
-            const windowId = packet.func_148901_c();
-            const hasSlots = packet.func_148900_g();
-            const slots = packet.func_148898_f();
-
-            this.onOpenWindow(title, windowId, hasSlots, slots);
-        }).setFilteredClass(S2DPacketOpenWindow)
-
-        this.closeWindowTrigger = FloydRegister("packetReceived", (packet, event) => {
-            this.onCloseWindow();
-        }).setFilteredClass(S2EPacketCloseWindow);
-
-        this.closeWindowTrigger2 = FloydRegister("packetSent", () => {
-            this.onCloseWindow();
-        }).setFilteredClass(C0DPacketCloseWindow).unregister();
-
-        this.setSlotTrigger = FloydRegister("packetReceived", (packet, event) => {
-            const itemStack = packet.func_149174_e();
-            const slot = packet.func_149173_d();
-            const windowID = packet.func_149175_c();
-        
-            this.onSetSlot(itemStack, slot, windowID, packet, event);
-        }).setFilteredClass(S2FPacketSetSlot).unregister();
-
-        this.renderTrigger.unregister(); 
-        this.openWindowTrigger.unregister();
-        this.closeWindowTrigger.unregister();
-        this.closeWindowTrigger.unregister();
-        this.closeWindowTrigger2.unregister();
-        this.setSlotTrigger.unregister();
+        this.registerListeners();
     }
 
-    onRender(event) {
-        if(this.data.inTerminal) {
-            cancel(event);
-        }
+    registerListeners() {
+        // Register listeners here
+        packetOpenWindow.addListener(this.openWindowListener.bind(this));
+        packetSetSlot.addListener(this.setSlotListener.bind(this));
+        closeWindow.addListener(this.closeWindowListener.bind(this));
     }
 
-    onCloseWindow() {
-        this.data.inTerminal = false;
+    openWindowListener(title, windowId, _0, slotCount) {
+        // Open window listener logic
+    }
+
+    closeWindowListener() {
+        this.inTerm = false;
         while (this.queue.length) this.queue.shift();
+        closeWindow.removeListener(this.closeWindowListener);
+        packetSetSlot.removeListener(this.setSlotListener);
+        this.clickTrigger.unregister();
+        this.renderTrigger.unregister();
     }
 
-    onOpenWindow(title, windowId, _0, slotCount) {
-        this.data.ID = windowId;
-        const colorsMatch = title.match(this.ColourTitle);
+    setSlotListener(itemStack, slot) {
+        if (slot < 0 || slot >= this.windowSize) return;
 
-        if (colorsMatch !== null) {
-            this.data.extra = colorsMatch[1].toLowerCase();
-            this.data.inTerminal = true;
-            this.data.clicked = false;
-            while (this.slots.length) slots.pop();
-            this.data.windowSize = slotCount;
-        } else {
-            this.data.inTerminal = false;
-        }
-    }
-
-    onSetSlot(itemStack, slot) {
-        if (slot < 0) return;
-        if (slot >= windowSize) return;
         if (itemStack?.func_77973_b()) {
             const item = new Item(itemStack);
             this.slots[slot] = {
@@ -95,49 +54,118 @@ class RetardTerms {
         } else {
             this.slots[slot] = null;
         }
-        if (this.slots.length === windowSize) {
-            this.colourSolver();
-            if (queue.length > 0) {
-                if (queue.every(queued => solution.includes(queued[0]))) {
-                    queue.forEach(queued => predict(queued[0], queued[1]));
-                    this.clickSlot(queue[0][0], queue[0][1]);
-                    queue.shift();
+        if (this.slots.length === this.windowSize) {
+            this.solve();
+            if (this.queue.length > 0) {
+                if (this.queue.every(queued => this.solution.includes(queued[0]))) {
+                    this.queue.forEach(queued => this.predict(queued[0], queued[1]));
+                    this.click(this.queue[0][0], this.queue[0][1]);
+                    this.queue.shift();
                 } else {
-                    while (queue.length) queue.shift();
+                    while (this.queue.length) this.queue.shift();
                 }
             }
         }
     }
 
-    colourSolver() {
-        const allowedSlots = [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43];
-        const replacements = { "light gray": "silver", "wool": "white", "bone": "white", "ink": "black", "lapis": "blue", "cocoa": "brown", "dandelion": "yellow", "rose": "red", "cactus": "green" };
-        
-        const fixName = name => {
-          Object.entries(replacements).forEach(([k, v]) => {
-            name = name.replace(new RegExp("^" + k), v);
-          });
-          return name;
-        };
-      
-        const nextSlot = this.slots
-          .filter(slot => slot && allowedSlots.includes(slot.slot) && !slot.enchanted && fixName(slot.name.toLowerCase()).startsWith(extra))
-          .map(slot => slot.slot)[0]; 
-      
-        return nextSlot; 
+    getCorrectPanes() {
+        if (this.inTerm) return;
+        this.correctPanes = [];
+        let inventoryName = Player.getContainer().getName();
+
+        if (inventoryName == "Correct all the panes!") {
+            for (let index = 11; index < 34; index++) {
+                if (Player.getContainer().getStackInSlot(index)?.getMetadata() === 14) this.correctPanes.push(index);
+            }
+        } else if (inventoryName == "Click in order!") {
+            Player.getContainer().getItems().forEach((item, index) => {
+                if (item?.getMetadata() === 14) this.correctPanes[parseInt(ChatLib.removeFormatting(item.getName())) - 1] = index;
+            });
+        } else if (inventoryName.startsWith("What starts with: ")) {
+            let letter = inventoryName.match(/What starts with: '(\w+)'?/)[1];
+            Player.getContainer().getItems().forEach((item, index) => {
+                if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) this.correctPanes.push(index);
+            });
+        } else if (inventoryName.startsWith("Select all the ")) {
+            let color = inventoryName.match(/Select all the (.+) items!/)[1].toLowerCase();
+            Player.getContainer().getItems().forEach((item, index) => {
+                let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
+                Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
+                if (itemName.includes(color) && index < 44) this.correctPanes.push(index);
+            });
+        } else if (inventoryName == "Navigate the maze!") {
+            const getColour = (colour) => Array.from(Array(54).keys()).filter(slot => Player.getContainer().getStackInSlot(slot)?.getDamage() == colour);
+            const adjacent = (slot1, slot2) => [slot1 % 9 == 0 ? -1 : slot1 - 1, slot1 % 9 == 8 ? -1 : slot1 + 1, slot1 + 9, slot1 - 9].filter(slot => slot >= 0).some(slot => slot == slot2);
+            let unvisited = getColour(0);
+            let previous = getColour(5);
+            let red = getColour(14);
+            while (!adjacent(previous, red)) {
+                let nextStep = unvisited.filter(pane => adjacent(pane, previous) && !this.correctPanes.includes(pane))[0];
+                previous = nextStep;
+                if (previous == null) break;
+                this.correctPanes.push(nextStep);
+            }
+        } else if (inventoryName == "Change all to same color!") {
+            let optimal = mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
+            Player.getContainer().getItems().forEach((pane, index) => {
+                if (pane?.getDamage() == 15 || !pane) return;
+                for (let i = 0; i < Math.abs(this.colorCycle.indexOf(optimal) - this.colorCycle.indexOf(pane.getDamage())); i++) this.correctPanes.push(index);
+            });
+        } else if (inventoryName == "Click the button on time!") {
+            this.inTerm = true;
+            let stage = 9;
+            new Thread(() => {
+                while (this.inTerm) {
+                    let slot = this.onTimeSolver() ?? 0;
+                    if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
+                        Client.getMinecraft().field_71442_b.func_78753_a(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer());
+                        Thread.sleep(750);
+                        stage += 9;
+                    }
+                    if (stage > 36) {
+                        this.inTerm = false;
+                    }
+                }
+                this.terminals++;
+            }).start();
+        }
+
+        if (this.correctPanes.length) {
+            this.inTerm = true;
+            this.terminals++;
+            this.clickTerms();
+        }
     }
 
-    clickSlot(slot, button) {
-        if (slot === undefined || button === undefined) return;
-        this.data.clicked = true;
-        Client.sendPacket(new C0EPacketClickWindow(this.data.ID, slot, button, 0, null, 0));
-        const initialWindowId = this.data.ID;
+    onTimeSolver() {
+        Player.getContainer().getItems().forEach((item, index) => {
+            if (index > 8) return;
+            if (item?.getMetadata() == 10) this.slot = index;
+        });
+        return this.slot;
+    }
 
-        setTimeout(() => {
-            if (!this.data.inTerminal || initialWindowId !== this.data.ID) return;
-            while (this.queue.length) queue.pop();
-            this.colourSolver();
-            this.data.clicked = false;
-        }, 150);
+    clickTerms() {
+        new Thread(() => {
+            let windowId = Player.getPlayer().field_71070_bA.field_75152_c;
+            this.correctPanes.forEach((slot) => {
+                if (windowId <= Player.getPlayer().field_71070_bA.field_75152_c) windowId = Player.getPlayer().field_71070_bA.field_75152_c;
+                if (Client.currentGui.get() == null) return;
+                Client.getMinecraft().field_71442_b.func_78753_a(windowId, slot, 2, 3, Player.getPlayer());
+                Thread.sleep(this.randomDelay());
+                windowId++;
+            });
+            this.inTerm = false;
+        }).start();
+    }
+
+    exitTerm() {
+        this.inTerm = false;
+    }
+
+    randomDelay() {
+        return Math.floor(Math.random() * (15) + 150);
     }
 }
+
+export default TerminalHandler;
