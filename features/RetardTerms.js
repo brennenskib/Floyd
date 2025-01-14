@@ -31,7 +31,7 @@ class TerminalHandler {
             if(this.inTerm) {
                 cancel(event);
             }
-        })        
+        });
     }
 
     mode(array) {
