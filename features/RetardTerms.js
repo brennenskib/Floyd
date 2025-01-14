@@ -17,6 +17,7 @@ class RetardTerms {
                 cancel(event);
             }
         })       
+        
         this.renderTrigger.unregister(); 
     }
 
