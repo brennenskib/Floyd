@@ -13,7 +13,7 @@ class RetardTerms {
         this.queue = [];
 
         FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
-            if(shouldOpen) {
+            if(this.data.inTerminal) {
                 cancel(event);
             }
         })        
