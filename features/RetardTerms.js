@@ -1,4 +1,5 @@
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow")
+const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
 
 const { FloydRegister } = global.floyd.DynamicReload;
 const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
@@ -15,7 +16,19 @@ class RetardTerms {
         this.renderTrigger = FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
             this.onRender(event);
         })       
-        
+
+        this.openWindowTrigger = register("packetReceived", (packet, event) => {
+            const title = ChatLib.removeFormatting(packet.func_179840_c().func_150254_d());
+            const windowId = packet.func_148901_c();
+            const hasSlots = packet.func_148900_g();
+            const slots = packet.func_148898_f();
+            const guiId = packet.func_148902_e();
+            const entityId = packet.func_148897_h();
+            for (let listener of listeners) {
+                listener(title, windowId, hasSlots, slots, guiId, entityId, packet, event);
+            }
+        }).setFilteredClass(S2DPacketOpenWindow)
+
         this.renderTrigger.unregister(); 
     }
 
