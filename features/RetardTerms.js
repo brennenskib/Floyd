@@ -10,6 +10,9 @@ class RetardTerms {
         this.queue = [];
     }
 
+    onRender() {
+        
+    }
     onCloseWIndow() {
         this.data.inTerminal = false;
         while (this.queue.length) this.queue.shift();
