@@ -17,15 +17,15 @@ class RetardTerms {
                 cancel(event);
             }
         })       
-        
+
         this.renderTrigger.unregister(); 
     }
 
     onRender() {
-    
+    this.renderTrigger
     }
 
-    onCloseWIndow() {
+    onCloseWindow() {
         this.data.inTerminal = false;
         while (this.queue.length) this.queue.shift();
     }
