@@ -4,11 +4,12 @@ class RetardTerms {
 
         this.data = {};
         this.slots = [];
+        this.queue = [];
     }
 
     onCloseWIndow() {
         inTerminal = false;
-        while (queue.length) queue.shift();
+        while (this.queue.length) queue.shift();
         closeWindow.removeListener(closeWindowListener);
         packetSetSlot.removeListener(setSlotListener);
         clickTrigger.unregister();
