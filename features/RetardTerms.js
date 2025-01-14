@@ -2,6 +2,7 @@ const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPac
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
 const S2EPacketCloseWindow = Java.type("net.minecraft.network.play.server.S2EPacketCloseWindow");
 const C0DPacketCloseWindow = Java.type("net.minecraft.network.play.client.C0DPacketCloseWindow");
+const S2FPacketSetSlot = Java.type("net.minecraft.network.play.server.S2FPacketSetSlot");
 
 const { FloydRegister } = global.floyd.DynamicReload;
 const { prefix, unpressAllMovementKeys, setSlot, pressAllPressedMovementKeys } = global.floyd.utils;
@@ -36,6 +37,14 @@ class RetardTerms {
             this.onCloseWindow();
         }).setFilteredClass(C0DPacketCloseWindow).unregister();
 
+        this.setSlotTrigger = FloydRegister("packetReceived", (packet, event) => {
+            const itemStack = packet.func_149174_e();
+            const slot = packet.func_149173_d();
+            const windowID = packet.func_149175_c();
+        
+            this.onSetSlot(itemStack, slot, windowID, packet, event);
+        }).setFilteredClass(S2FPacketSetSlot).unregister();
+
         this.renderTrigger.unregister(); 
         this.openWindowTrigger.unregister();
         this.closeWindowTrigger.unregister();
@@ -69,7 +78,7 @@ class RetardTerms {
         }
     }
 
-    setSlotListener(itemStack, slot) {
+    onSetSlot(itemStack, slot) {
         if (slot < 0) return;
         if (slot >= windowSize) return;
         if (itemStack?.func_77973_b()) {
@@ -116,4 +125,6 @@ class RetardTerms {
       
         return nextSlot; 
     }
+
+    onTick
 }
