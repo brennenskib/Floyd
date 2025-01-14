@@ -17,7 +17,7 @@ class RetardTerms {
             this.onRender(event);
         })       
 
-        this.openWindowTrigger = register("packetReceived", (packet, event) => {
+        this.openWindowTrigger = FloydRegister("packetReceived", (packet, event) => {
             const title = ChatLib.removeFormatting(packet.func_179840_c().func_150254_d());
             const windowId = packet.func_148901_c();
             const hasSlots = packet.func_148900_g();
