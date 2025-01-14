@@ -11,7 +11,8 @@ const obj = {
     blackListUrl: 'test.com',
     Secret_Aura: false,
     NoStopCobble: false,
-    splashText: true
+    splashText: true,
+    AutoTerms: true
 }
 
 global.floyd.obj = obj
