@@ -22,7 +22,6 @@ class TerminalHandler {
                 if (!(Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)) this.exitTerm() 
                 else this.getCorrectPanes()
             }
-    
         })
     }
 
