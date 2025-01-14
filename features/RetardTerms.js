@@ -6,6 +6,27 @@ class RetardTerms {
         this.slots = [];
     }
 
+    openWindowListener(title, windowId, _0, slotCount) {
+        cwid = windowId;
+        const colorsMatch = title.match(/^Select all the ([\w ]+) items!$/);
+        if (colorsMatch !== null) {
+            extra = colorsMatch[1].toLowerCase();
+            if (!inTerminal) {
+                closeWindow.addListener(closeWindowListener);
+                packetSetSlot.addListener(setSlotListener);
+                clickTrigger.register();
+                renderTrigger.register();
+            }
+            if (!clicked) openedAt = new Date().getTime();
+            inTerminal = true;
+            clicked = false;
+            while (slots.length) slots.pop();
+            windowSize = slotCount;
+        } else {
+            inTerminal = false;
+        }
+    }
+    
     setSlotListener(itemStack, slot) {
         if (slot < 0) return;
         if (slot >= windowSize) return;
