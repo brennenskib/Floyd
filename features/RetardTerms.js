@@ -22,10 +22,8 @@ class RetardTerms {
             const windowId = packet.func_148901_c();
             const hasSlots = packet.func_148900_g();
             const slots = packet.func_148898_f();
-            const guiId = packet.func_148902_e();
-            const entityId = packet.func_148897_h();
 
-            this.onOpenWindow(title, windowId, hasSlots, slots, guiId, entityId, packet, event);
+            this.onOpenWindow(title, windowId, hasSlots, slots);
         }).setFilteredClass(S2DPacketOpenWindow)
 
         this.renderTrigger.unregister(); 
