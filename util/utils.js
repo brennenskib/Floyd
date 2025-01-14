@@ -120,6 +120,10 @@ function swapFromName(items) {
     return true;
 }
 
+function isFloor7() {
+    return floor == 7;
+}
+
 global.floyd.utils = { 
     mc,
     prefix, 
@@ -138,5 +142,6 @@ global.floyd.utils = {
     leftClick,
     rightClick,
     swapFromName,
-    setSlot
+    setSlot,
+    isFloor7
 }
