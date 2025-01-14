@@ -13,9 +13,7 @@ class RetardTerms {
         this.queue = [];
 
         this.renderTrigger = FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
-            if(this.data.inTerminal) {
-                cancel(event);
-            }
+            this.onRender(event);
         })       
 
         this.renderTrigger.unregister(); 
