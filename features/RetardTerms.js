@@ -14,7 +14,7 @@ class RetardTerms {
             this.data.extra = colorsMatch[1].toLowerCase();
             this.data.inTerminal = true;
             this.data.clicked = false;
-            while (slots.length) slots.pop();
+            while (this.slots.length) slots.pop();
             this.data.windowSize = slotCount;
         } else {
             this.data.inTerminal = false;
