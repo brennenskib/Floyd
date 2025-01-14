@@ -121,6 +121,15 @@ function swapFromName(items) {
 }
 
 function isFloor7() {
+    let scoreboard = Scoreboard.getLines().map(a => { return ChatLib.removeFormatting(a) });
+    
+    for (let line of scoreboard) {
+        let match = line.match(/ ⏣ The Catac.+ombs \((.+)\)/)
+        if (match) {
+            return parseInt(match[1].replace(/[^\d]/g, ""))
+        }
+    }
+
     return floor == 7;
 }
 
