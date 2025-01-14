@@ -1,8 +1,8 @@
 class RetardTerms {
     constructor() {
-        const colorsMatch = title.match(/^Select all the ([\w ]+) items!$/);
+        this.ColourTitle = title.match(/^Select all the ([\w ]+) items!$/);
 
-        
+
         this.slots = [];
     }
 
