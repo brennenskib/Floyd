@@ -8,7 +8,7 @@ class RetardTerms {
         if (slot >= windowSize) return;
         if (itemStack?.func_77973_b()) {
             const item = new Item(itemStack);
-            slots[slot] = {
+            this.slots[slot] = {
                 slot,
                 id: item.getID(),
                 meta: item.getMetadata(),
@@ -17,9 +17,9 @@ class RetardTerms {
                 enchanted: item.isEnchanted()
             };
         } else {
-            slots[slot] = null;
+            this.slots[slot] = null;
         }
-        if (slots.length === windowSize) {
+        if (this.slots.length === windowSize) {
             solve();
             if (queue.length > 0) {
                 if (queue.every(queued => solution.includes(queued[0]))) {
@@ -44,7 +44,7 @@ class RetardTerms {
           return name;
         };
       
-        const nextSlot = slots
+        const nextSlot = this.slots
           .filter(slot => slot && allowedSlots.includes(slot.slot) && !slot.enchanted && fixName(slot.name.toLowerCase()).startsWith(extra))
           .map(slot => slot.slot)[0]; 
       
