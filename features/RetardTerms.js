@@ -2,7 +2,7 @@ class RetardTerms {
     constructor() {
         this.ColourTitle = title.match(/^Select all the ([\w ]+) items!$/);
 
-
+        this.data = {};
         this.slots = [];
     }
 
@@ -26,7 +26,7 @@ class RetardTerms {
             inTerminal = false;
         }
     }
-    
+
     setSlotListener(itemStack, slot) {
         if (slot < 0) return;
         if (slot >= windowSize) return;
