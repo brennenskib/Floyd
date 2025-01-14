@@ -1,3 +1,5 @@
+const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow")
+
 class RetardTerms {
     constructor() {
         this.ColourTitle = /^Select all the ([\w ]+) items!$/;
