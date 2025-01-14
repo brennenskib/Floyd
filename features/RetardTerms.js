@@ -12,15 +12,16 @@ class RetardTerms {
         this.slots = [];
         this.queue = [];
 
-        FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
+        this.renderTrigger = FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
             if(this.data.inTerminal) {
                 cancel(event);
             }
-        })        
+        })       
+        this.renderTrigger.unregister(); 
     }
 
     onRender() {
-
+    
     }
 
     onCloseWIndow() {
