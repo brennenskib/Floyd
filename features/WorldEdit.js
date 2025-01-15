@@ -12,5 +12,4 @@ register('packetSent', (packet, event) => {
     dat.push(data)
 
     FileLib.write("Floyd-main", "WorldEdit.json", JSON.stringify(dat), true);
-
 }).setPacketClass(net.minecraft.network.play.client.C08PacketPlayerBlockPlacement)
