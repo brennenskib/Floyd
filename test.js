@@ -50,7 +50,7 @@ function setTextFieldStyle(textField) {
 function setSliderStyle(slider) {
     slider.setBackground(new Color(60 / 255, 60 / 255, 60 / 255));
     slider.setForeground(Color.WHITE);
-    slider.setMajorTickSpacing(10);
+    slider.setMajorTickSpacing(20);
     slider.setMinorTickSpacing(10);
     slider.setPaintTicks(true);
     slider.setPaintLabels(true);
