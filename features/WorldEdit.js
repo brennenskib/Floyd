@@ -3,6 +3,6 @@ register('packetSent', (packet, event) => {
 
     let dat = {
         pos: pos,
-        blockType: World.getBlockAt(pos).type.getID();
+        blockType: World.getBlockAt(pos).type.getID()
     }
 }).setPacketClass(net.minecraft.network.play.client.C08PacketPlayerBlockPlacement)
