@@ -10,4 +10,6 @@ register('packetSent', (packet, event) => {
     }
 
     dat.push(data)
+
+    
 }).setPacketClass(net.minecraft.network.play.client.C08PacketPlayerBlockPlacement)
