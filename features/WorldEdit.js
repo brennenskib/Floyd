@@ -2,6 +2,7 @@ const dat = JSON.parse(FileLib.read("Floyd-main", "WorldEdit.json")) ? JSON.pars
 FileLib.write("Floyd-main", "WorldEdit.json", JSON.stringify(dat), true);
 
 register('packetSent', (packet, event) => {
+    ChatLib.chat('test')
     let pos = new BlockPos(packet.func_179724_a());
 
     let data = {
