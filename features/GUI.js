@@ -37,13 +37,13 @@ function setButtonStyle(button) {
 
 function setTextFieldStyle(textField) {
     textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    textField.setBackground(new Color(60, 60, 60));
+    textField.setBackground(new Color(60 / 255, 60  / 255, 60  / 255));
     textField.setForeground(Color.WHITE);
     textField.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
 }
 
 function setSliderStyle(slider) {
-    slider.setBackground(new Color(60, 60, 60));
+    slider.setBackground(new Color(60  / 255, 60  / 255, 60  / 255));
     slider.setForeground(Color.WHITE);
     slider.setMajorTickSpacing(10);
     slider.setMinorTickSpacing(1);
@@ -54,7 +54,7 @@ function setSliderStyle(slider) {
 
 function setComboBoxStyle(comboBox) {
     comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    comboBox.setBackground(new Color(60, 60, 60));
+    comboBox.setBackground(new Color(60  / 255, 60  / 255, 60  / 255));
     comboBox.setForeground(Color.WHITE);
     comboBox.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
 }
