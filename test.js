@@ -21,43 +21,46 @@ const JButton = Java.type("javax.swing.JButton");
 const JTextField = Java.type("javax.swing.JTextField");
 const JSlider = Java.type("javax.swing.JSlider");
 const JComboBox = Java.type("javax.swing.JComboBox");
-const JCheckBox = Java.type("javax.swing.JCheckBox");
-const BorderLayout = Java.type("java.awt.BorderLayout");
-const BoxLayout = Java.type("javax.swing.BoxLayout");
+const BorderFactory = Java.type("javax.swing.BorderFactory");
+const Border = Java.type("javax.swing.border.Border");
+const LineBorder = Java.type("javax.swing.border.LineBorder");
+const Font = Java.type("java.awt.Font");
 const Color = Java.type("java.awt.Color");
 const Dimension = Java.type("java.awt.Dimension");
-const Font = Java.type("java.awt.Font");
-const BorderFactory = Java.type("javax.swing.BorderFactory");
+
+function createRoundedBorder(thickness, color) {
+    return new LineBorder(color, thickness, true);
+}
 
 function setButtonStyle(button) {
     button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    button.setBackground(new Color(50 / 255, 50 / 255, 50 / 255)); // Normalize by dividing by 255
+    button.setBackground(new Color(50 / 255, 50 / 255, 50 / 255));
     button.setForeground(Color.WHITE);
-    button.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
+    button.setBorder(createRoundedBorder(2, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function setTextFieldStyle(textField) {
     textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    textField.setBackground(new Color(60 / 255, 60 / 255, 60 / 255)); // Normalize by dividing by 255
+    textField.setBackground(new Color(60 / 255, 60 / 255, 60 / 255));
     textField.setForeground(Color.WHITE);
-    textField.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
+    textField.setBorder(createRoundedBorder(2, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function setSliderStyle(slider) {
-    slider.setBackground(new Color(60 / 255, 60 / 255, 60 / 255)); // Normalize by dividing by 255
+    slider.setBackground(new Color(60 / 255, 60 / 255, 60 / 255));
     slider.setForeground(Color.WHITE);
     slider.setMajorTickSpacing(10);
     slider.setMinorTickSpacing(1);
     slider.setPaintTicks(true);
     slider.setPaintLabels(true);
-    slider.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
+    slider.setBorder(createRoundedBorder(2, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function setComboBoxStyle(comboBox) {
     comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    comboBox.setBackground(new Color(60 / 255, 60 / 255, 60 / 255)); // Normalize by dividing by 255
+    comboBox.setBackground(new Color(60 / 255, 60 / 255, 60 / 255));
     comboBox.setForeground(Color.WHITE);
-    comboBox.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
+    comboBox.setBorder(createRoundedBorder(2, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function createGUIFromSettings(settings) {
@@ -68,7 +71,7 @@ function createGUIFromSettings(settings) {
     
     const mainPanel = new JPanel();
     mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-    mainPanel.setBackground(new Color(0 / 255, 0 / 255, 0 / 255)); // Normalize black color
+    mainPanel.setBackground(new Color(0 / 255, 0 / 255, 0 / 255)); // Black color
 
     // Iterate over each category in the settings
     for (let category in settings) {
@@ -86,7 +89,7 @@ function createGUIFromSettings(settings) {
         for (let subCategory in subSettings) {
             const setting = subSettings[subCategory];
             const subPanel = new JPanel();
-            subPanel.setBackground(new Color(169 / 255, 169 / 255, 169 / 255)); // Normalized gray color for subpanels
+            subPanel.setBackground(new Color(169 / 255, 169 / 255, 169 / 255)); // Gray for subpanel
             subPanel.setMaximumSize(new Dimension(480, 40));
             
             const subLabel = new JLabel(subCategory);
