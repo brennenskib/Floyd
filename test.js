@@ -51,7 +51,7 @@ function setSliderStyle(slider) {
     slider.setBackground(new Color(60 / 255, 60 / 255, 60 / 255));
     slider.setForeground(Color.WHITE);
     slider.setMajorTickSpacing(10);
-    slider.setMinorTickSpacing(1);
+    slider.setMinorTickSpacing(10);
     slider.setPaintTicks(true);
     slider.setPaintLabels(true);
     slider.setBorder(createRoundedBorder(2, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
