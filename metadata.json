@@ -1,7 +1,7 @@
 {
   "name": "Conatus",
   "creator": "Brennen",
-  "entry": "loader.js",
+  "entry": "test.js",
   "version": "0.0.1",
   "requires": ["requestV2", "WebSocket", "RenderLib"]
 }
