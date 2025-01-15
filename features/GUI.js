@@ -103,6 +103,7 @@ function createGUIFromSettings(settings) {
                     for (let i = 0; i < setting.options.length; i++) {
                         optionsArray[i] = new StringArray(setting.options[i]);  // Populate the array with Java String elements
                     }
+                    const comboBox = new JComboBox(optionsArray);
                     comboBox.setSelectedItem(setting.value);
                     comboBox.addActionListener(() => {
                         setting.value = comboBox.getSelectedItem();
