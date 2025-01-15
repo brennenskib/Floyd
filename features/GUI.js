@@ -37,7 +37,7 @@ function setButtonStyle(button) {
 
 function setTextFieldStyle(textField) {
     textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    textField.setBackground(new Color(60 / 255, 60  / 255, 60  / 255));
+    textField.setBackground(new Color(60, 60, 60));
     textField.setForeground(Color.WHITE);
     textField.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
 }
