@@ -8,7 +8,7 @@ register('packetSent', (packet, event) => {
 }).setPacketClass(net.minecraft.network.play.client.C08PacketPlayerBlockPlacement)
 
 let blocks = [
-    { x: 56, y: 113, z: 111, blockType: 41 },
+    { x: 56, y: 113, z: 111, blockType: 41, dir: 1 },
     { x: 55, y: 113, z: 111, blockType: 7 },
     { x: 55, y: 114, z: 111, blockType: 7 },
     { x: 56, y: 112, z: 110, blockType: 1 }
