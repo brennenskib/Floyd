@@ -1,5 +1,5 @@
 const dat = JSON.parse(FileLib.read("Floyd-main", "WorldEdit.json")) ? JSON.parse(FileLib.read("Floyd-main", "WorldEdit.json")) : [];
-FileLib.write("Floyd-main", "WorldEdit.json", dat, true);
+FileLib.write("Floyd-main", "WorldEdit.json", JSON.stringify(dat), true);
 
 register('packetSent', (packet, event) => {
     let pos = new BlockPos(packet.func_179724_a());
