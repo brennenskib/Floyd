@@ -98,7 +98,11 @@ function createGUIFromSettings(settings) {
                     break;
 
                 case "dropdown":
-                    const comboBox = new JComboBox(Java.to(setting.options, "java.lang.String[]"));
+                    const StringArray = Java.type("java.lang.String");  // Define Java String type
+                    const optionsArray = new Array(setting.options.length);  // Create a new Java array of the same length
+                    for (let i = 0; i < setting.options.length; i++) {
+                        optionsArray[i] = new StringArray(setting.options[i]);  // Populate the array with Java String elements
+                    }
                     comboBox.setSelectedItem(setting.value);
                     comboBox.addActionListener(() => {
                         setting.value = comboBox.getSelectedItem();
