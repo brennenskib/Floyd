@@ -12,3 +12,4 @@ let blocks = [
     { x: 55, y: 113, z: 111, blockType: 7 },
     { x: 55, y: 114, z: 111, blockType: 7 },
     { x: 56, y: 112, z: 110, blockType: 1 }
+]
