@@ -30,33 +30,33 @@ const Font = Java.type("java.awt.Font");
 
 function setButtonStyle(button) {
     button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    button.setBackground(new Color(50, 50, 50));
+    button.setBackground(new Color(50 / 255, 50 / 255, 50 / 255)); // Normalize by dividing by 255
     button.setForeground(Color.WHITE);
-    button.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+    button.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function setTextFieldStyle(textField) {
     textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    textField.setBackground(new Color(60, 60, 60));
+    textField.setBackground(new Color(60 / 255, 60 / 255, 60 / 255)); // Normalize by dividing by 255
     textField.setForeground(Color.WHITE);
-    textField.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+    textField.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function setSliderStyle(slider) {
-    slider.setBackground(new Color(60  / 255, 60  / 255, 60  / 255));
+    slider.setBackground(new Color(60 / 255, 60 / 255, 60 / 255)); // Normalize by dividing by 255
     slider.setForeground(Color.WHITE);
     slider.setMajorTickSpacing(10);
     slider.setMinorTickSpacing(1);
     slider.setPaintTicks(true);
     slider.setPaintLabels(true);
-    slider.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+    slider.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function setComboBoxStyle(comboBox) {
     comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    comboBox.setBackground(new Color(60  / 255, 60  / 255, 60  / 255));
+    comboBox.setBackground(new Color(60 / 255, 60 / 255, 60 / 255)); // Normalize by dividing by 255
     comboBox.setForeground(Color.WHITE);
-    comboBox.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+    comboBox.setBorder(BorderFactory.createRoundRectBorder(20, new Color(169 / 255, 169 / 255, 169 / 255))); // Dark gray border
 }
 
 function createGUIFromSettings(settings) {
@@ -67,13 +67,13 @@ function createGUIFromSettings(settings) {
     
     const mainPanel = new JPanel();
     mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-    mainPanel.setBackground(Color.BLACK);
+    mainPanel.setBackground(new Color(0 / 255, 0 / 255, 0 / 255)); // Normalize black color
 
     // Iterate over each category in the settings
     for (let category in settings) {
         const categoryPanel = new JPanel();
         categoryPanel.setLayout(new BoxLayout(categoryPanel, BoxLayout.Y_AXIS));
-        categoryPanel.setBackground(Color.DARK_GRAY);
+        categoryPanel.setBackground(new Color(43 / 255, 43 / 255, 43 / 255)); // Dark gray panel background
         categoryPanel.setMaximumSize(new Dimension(480, 100));
         
         const categoryLabel = new JLabel(category);
@@ -85,7 +85,7 @@ function createGUIFromSettings(settings) {
         for (let subCategory in subSettings) {
             const setting = subSettings[subCategory];
             const subPanel = new JPanel();
-            subPanel.setBackground(Color.GRAY);
+            subPanel.setBackground(new Color(169 / 255, 169 / 255, 169 / 255)); // Normalized gray color for subpanels
             subPanel.setMaximumSize(new Dimension(480, 40));
             
             const subLabel = new JLabel(subCategory);
