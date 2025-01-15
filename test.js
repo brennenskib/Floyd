@@ -27,6 +27,7 @@ const BoxLayout = Java.type("javax.swing.BoxLayout");
 const Color = Java.type("java.awt.Color");
 const Dimension = Java.type("java.awt.Dimension");
 const Font = Java.type("java.awt.Font");
+const BorderFactory = Java.type("javax.swing.BorderFactory");
 
 function setButtonStyle(button) {
     button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
