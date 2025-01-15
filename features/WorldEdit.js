@@ -4,8 +4,10 @@ FileLib.write("Floyd-main", "WorldEdit.json", JSON.stringify(dat), true);
 register('packetSent', (packet, event) => {
     let pos = new BlockPos(packet.func_179724_a());
 
-    let dat = {
+    let data = {
         pos: pos,
         blockType: World.getBlockAt(pos).type.getID()
     }
+
+    dat.push(data)
 }).setPacketClass(net.minecraft.network.play.client.C08PacketPlayerBlockPlacement)
