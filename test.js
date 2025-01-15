@@ -27,6 +27,7 @@ const LineBorder = Java.type("javax.swing.border.LineBorder");
 const Font = Java.type("java.awt.Font");
 const Color = Java.type("java.awt.Color");
 const Dimension = Java.type("java.awt.Dimension");
+const FlowLayout = Java.type("java.awt.FlowLayout");
 
 function createRoundedBorder(thickness, color) {
     return new LineBorder(color, thickness, true);
@@ -69,14 +70,12 @@ function createGUIFromSettings(settings) {
     frame.setSize(500, 400);
     frame.setLocationRelativeTo(null);
     
-    const mainPanel = new JPanel();
-    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+    const mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Using FlowLayout instead of BoxLayout
     mainPanel.setBackground(new Color(0 / 255, 0 / 255, 0 / 255)); // Black color
 
     // Iterate over each category in the settings
     for (let category in settings) {
-        const categoryPanel = new JPanel();
-        categoryPanel.setLayout(new BoxLayout(categoryPanel, BoxLayout.Y_AXIS));
+        const categoryPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // FlowLayout for the category
         categoryPanel.setBackground(new Color(43 / 255, 43 / 255, 43 / 255)); // Dark gray panel background
         categoryPanel.setMaximumSize(new Dimension(480, 100));
         
@@ -88,7 +87,7 @@ function createGUIFromSettings(settings) {
         const subSettings = settings[category];
         for (let subCategory in subSettings) {
             const setting = subSettings[subCategory];
-            const subPanel = new JPanel();
+            const subPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // FlowLayout for subpanel
             subPanel.setBackground(new Color(169 / 255, 169 / 255, 169 / 255)); // Gray for subpanel
             subPanel.setMaximumSize(new Dimension(480, 40));
             
