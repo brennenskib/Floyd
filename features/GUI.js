@@ -26,6 +26,38 @@ const BorderLayout = Java.type("java.awt.BorderLayout");
 const BoxLayout = Java.type("javax.swing.BoxLayout");
 const Color = Java.type("java.awt.Color");
 const Dimension = Java.type("java.awt.Dimension");
+const Font = Java.type("java.awt.Font");
+
+function setButtonStyle(button) {
+    button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    button.setBackground(new Color(50, 50, 50));
+    button.setForeground(Color.WHITE);
+    button.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+}
+
+function setTextFieldStyle(textField) {
+    textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    textField.setBackground(new Color(60, 60, 60));
+    textField.setForeground(Color.WHITE);
+    textField.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+}
+
+function setSliderStyle(slider) {
+    slider.setBackground(new Color(60, 60, 60));
+    slider.setForeground(Color.WHITE);
+    slider.setMajorTickSpacing(10);
+    slider.setMinorTickSpacing(1);
+    slider.setPaintTicks(true);
+    slider.setPaintLabels(true);
+    slider.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+}
+
+function setComboBoxStyle(comboBox) {
+    comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    comboBox.setBackground(new Color(60, 60, 60));
+    comboBox.setForeground(Color.WHITE);
+    comboBox.setBorder(BorderFactory.createRoundRectBorder(20, Color.DARK_GRAY));
+}
 
 function createGUIFromSettings(settings) {
     const frame = new JFrame("Dynamic Settings GUI");
@@ -46,6 +78,7 @@ function createGUIFromSettings(settings) {
         
         const categoryLabel = new JLabel(category);
         categoryLabel.setForeground(Color.WHITE);
+        categoryLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         categoryPanel.add(categoryLabel);
         
         const subSettings = settings[category];
@@ -57,14 +90,14 @@ function createGUIFromSettings(settings) {
             
             const subLabel = new JLabel(subCategory);
             subLabel.setForeground(Color.BLACK);
+            subLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
             subPanel.add(subLabel);
             
             // Create controls based on the type
             switch (setting.type) {
                 case "toggleable":
                     const toggleButton = new JButton(setting.value ? "Enabled" : "Disabled");
-                    toggleButton.setBackground(setting.value ? Color.GREEN : Color.RED);
-                    toggleButton.setForeground(Color.WHITE);
+                    setButtonStyle(toggleButton);
                     toggleButton.addActionListener(() => {
                         setting.value = !setting.value;
                         toggleButton.setText(setting.value ? "Enabled" : "Disabled");
@@ -75,6 +108,7 @@ function createGUIFromSettings(settings) {
                 
                 case "slider":
                     const slider = new JSlider(setting.min, setting.max, setting.value);
+                    setSliderStyle(slider);
                     slider.addChangeListener(() => {
                         setting.value = slider.getValue();
                     });
@@ -83,6 +117,7 @@ function createGUIFromSettings(settings) {
 
                 case "key set":
                     const keyField = new JTextField(setting.value, 5);
+                    setTextFieldStyle(keyField);
                     keyField.addActionListener(() => {
                         setting.value = keyField.getText();
                     });
@@ -91,6 +126,7 @@ function createGUIFromSettings(settings) {
                     
                 case "text set":
                     const textField = new JTextField(setting.value, 10);
+                    setTextFieldStyle(textField);
                     textField.addActionListener(() => {
                         setting.value = textField.getText();
                     });
@@ -98,12 +134,13 @@ function createGUIFromSettings(settings) {
                     break;
 
                 case "dropdown":
-                    const StringArray = Java.type("java.lang.String");  // Define Java String type
-                    const optionsArray = new Array(setting.options.length);  // Create a new Java array of the same length
+                    const StringArray = Java.type("java.lang.String");
+                    const optionsArray = new Array(setting.options.length);
                     for (let i = 0; i < setting.options.length; i++) {
-                        optionsArray[i] = new StringArray(setting.options[i]);  // Populate the array with Java String elements
+                        optionsArray[i] = new StringArray(setting.options[i]);
                     }
                     const comboBox = new JComboBox(optionsArray);
+                    setComboBoxStyle(comboBox);
                     comboBox.setSelectedItem(setting.value);
                     comboBox.addActionListener(() => {
                         setting.value = comboBox.getSelectedItem();
