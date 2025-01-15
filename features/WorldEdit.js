@@ -26,7 +26,7 @@ const BorderFactory = Java.type("javax.swing.BorderFactory");
 // Function to create the GUI
 function createGUI() {
     const frame = new JFrame("Black GUI Example");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     frame.setSize(400, 300);
     frame.setLocationRelativeTo(null);
 
