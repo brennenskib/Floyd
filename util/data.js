@@ -11,7 +11,7 @@ const obj = {
     blackListUrl: 'test.com',
     Secret_Aura: false,
     NoStopCobble: false,
-    splashText: true,
+    splashText: false,
     AutoTerms: false
 }
 
