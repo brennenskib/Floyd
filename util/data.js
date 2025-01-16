@@ -12,7 +12,7 @@ const obj = {
     Secret_Aura: false,
     NoStopCobble: false,
     splashText: true,
-    AutoTerms: true
+    AutoTerms: false
 }
 
 global.floyd.obj = obj
