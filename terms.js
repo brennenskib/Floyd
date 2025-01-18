@@ -55,8 +55,8 @@ class TerminalHandler {
 
                 let a = this.getStartsWith() 
 
-                a.forEach((slot) => {
-                    this.click(slot);
+                a.forEach(slot => {
+                    this.click(parseInt(slot));
                     Thread.sleep(150 + (Math.random()*150))
                 })
 
@@ -72,7 +72,7 @@ class TerminalHandler {
         Player.getContainer().getItems().forEach((item, index) => {
             if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) r.push(index);
         });
-        
+
         return r;
     }
 
