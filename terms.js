@@ -76,7 +76,7 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getStartsWith(iName) 
+                    let a = this.getSetAll();
 
                     a.forEach((slot) => {
                         this.click(slot);
