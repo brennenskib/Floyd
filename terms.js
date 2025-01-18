@@ -42,7 +42,7 @@ class TerminalHandler {
                     a.forEach((slot, index) => {
                         this.click(slot);
                         
-                        Thread.sleep(50)
+                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
@@ -55,7 +55,7 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(50)
+                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
@@ -68,7 +68,7 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(50)
+                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
@@ -81,7 +81,7 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(50)
+                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
@@ -94,7 +94,7 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(50)
+                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
