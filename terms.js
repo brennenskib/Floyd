@@ -33,9 +33,7 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
-            }
-
-            if (Player.getContainer().getName().startsWith("Select all the ")) {
+            } else if (Player.getContainer().getName().startsWith("Select all the ")) {
                 new Thread(() => {
                     this.inTerminal = true;
 
