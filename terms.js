@@ -35,10 +35,13 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    this.getColorIndex().forEach(index => {
-                        this.click(index);
-                        Thread.sleep(150 + (Math.random()*50))
-                    })
+                    let a = this.getColorIndex() 
+                        a.forEach(index => {
+                            this.click(index);
+                            Thread.sleep(150 + (Math.random()*50))
+                            if(index == a.length-1)
+                        })
+
                 }).start()
             }
         })
