@@ -38,9 +38,15 @@ class TerminalHandler {
     }
     
     getColorIndex() {
+        let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
 
+        Player.getContainer().getItems().forEach((item, index) => {
+            let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
+            Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
+            if (itemName.includes(color) && index < 44) this.correctPanes.push(index);
+        });
     }
-    
+
     getClickInOrderIndex() {
         let indexes = [];
         Player.getContainer().getItems().forEach((item, index) => {
