@@ -104,6 +104,7 @@ class TerminalHandler {
 
                         if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
                             this.click(7 + stage);
+                            ChatLib.chat(7 + stage)
                             Thread.sleep(750);
                             stage += 9;
                         }
