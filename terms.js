@@ -31,7 +31,13 @@ class TerminalHandler {
             if(this.inTerminal) return;
             if(Player.getContainer().getName() == "Click in order!") {
                 this.inTerminal = true;
-                this.click(this.getClickInOrderIndex());
+                new Thread(() => {
+                    this.getClickInOrderIndex().forEach(index => {
+                        ChatLib.chat(index)
+                        this.click(index);
+                        Thread.sleep(50)
+                    })
+                }).start()
             }
 
             if (Player.getContainer().getName().startsWith("Select all the ")) {
@@ -66,6 +72,7 @@ class TerminalHandler {
 
     getClickInOrderIndex() {
         let indexes = [];
+        
         Player.getContainer().getItems().forEach((item, index) => {
             if (item?.getMetadata() === 14) {
                 indexes[parseInt(item.getStackSize()) - 1] = index;
