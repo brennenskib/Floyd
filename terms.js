@@ -32,10 +32,9 @@ class TerminalHandler {
             }
 
             if (Player.getContainer().getName().startsWith("Select all the ")) {
-                this.inTerminal = true;
                 new Thread(() => {
                     this.getColorIndex().forEach(index => {
-                        ChatLib.chat(index)
+                        this.inTerminal = true;
                         this.click(index);
                         Thread.sleep(150 + (Math.random()*50))
                     })
