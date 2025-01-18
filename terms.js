@@ -3,7 +3,7 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 
 class TerminalHandler {
     constructor() {
-        this.windowId = false;
+        this.windowId = 0;
         this.inTerminal = false;
         this.colorList = {
             "light gray": "silver",
