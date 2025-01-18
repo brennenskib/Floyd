@@ -38,6 +38,7 @@ class TerminalHandler {
                 indexes[parseInt(ChatLib.removeFormatting(item.getName())) - 1] = index;
             }
         });
+        
         return indexes.find(index => index !== undefined);
     }
 
