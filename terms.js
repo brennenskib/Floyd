@@ -39,7 +39,7 @@ class TerminalHandler {
                         this.click(index);
                         Thread.sleep(50)
                     })
-                })
+                }).start()
             }
         })//.setFps(500)
     }
