@@ -112,6 +112,7 @@ class TerminalHandler {
     
     getChangeColorIndex() {
         let optimal = this.mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
+        
         return Player.getContainer().getItems().findIndex((pane, index) => {
             if (pane?.getDamage() == 15 || !pane) return false;
             return Math.abs(this.colorCycle.indexOf(optimal) - this.colorCycle.indexOf(pane.getDamage())) > 0;
