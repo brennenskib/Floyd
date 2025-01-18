@@ -27,7 +27,7 @@ class TerminalHandler {
         })
         
         register('renderOverlay', () => {
-            //if(!Client.isInGui()) return;
+            if(!Client.isInGui()) return;
             this.slotsToRender.forEach(slotIndx => {
                 const x = guiContainerLeftField.get(Client.currentGui.get())
                 const y = guiContainerTopField.get(Client.currentGui.get())
