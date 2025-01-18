@@ -7,7 +7,6 @@ class TerminalHandler {
         
         this.colorList = {
             "silver": "light gray",
-            "silver": "light grey",
             "white wool": "wool",
             "black ink": "ink",
             "blue lapis": "lapis",
