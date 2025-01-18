@@ -40,7 +40,7 @@ class TerminalHandler {
                     this.getColorIndex().forEach(index => {
                         ChatLib.chat(index)
                         this.click(index);
-                        Thread.sleep(50)
+                        Thread.sleep(1000)
                     })
                 }).start()
             }
