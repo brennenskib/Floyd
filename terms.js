@@ -35,7 +35,7 @@ class TerminalHandler {
                     this.getClickInOrderIndex().forEach(index => {
                         ChatLib.chat(index)
                         this.click(index);
-                        Thread.sleep(5)
+                        Thread.sleep(150 + (Math.random()*50))
                     })
                 }).start()
             }
@@ -46,7 +46,7 @@ class TerminalHandler {
                     this.getColorIndex().forEach(index => {
                         ChatLib.chat(index)
                         this.click(index);
-                        Thread.sleep(50 + (Math.random()*50))
+                        Thread.sleep(150 + (Math.random()*50))
                     })
                 }).start()
             }
