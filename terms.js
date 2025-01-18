@@ -17,6 +17,7 @@ class TerminalHandler {
         register('guiClosed', (event) => {
             this.inTerminal = false;
         })
+        
         register('packetReceived', (p, e) => {
             ChatLib.chat('opening new gui')
             this.windowId = p.func_148901_c(); // getWindowId
