@@ -90,11 +90,6 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let data = [
-                        [
-
-                        ]
-                    ]
                     let a = this.getCorrectAll();
 
                     a.forEach((slot) => {
@@ -105,7 +100,7 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-                
+                [10,19,28,37]
             }
         })
     }
