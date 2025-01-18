@@ -16,6 +16,7 @@ class TerminalHandler {
 
         register('packetReceived', (p, e) => {
             this.windowId = p.func_148901_c(); // getWindowId
+            ChatLib.chat(this.windowId)
         }).setFilteredClass(S2DPacketOpenWindow);
 
         register("step", () => {
