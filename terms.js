@@ -52,7 +52,7 @@ class TerminalHandler {
 
             if (Player.getContainer().getName().startsWith("What starts with: ")) {
                 this.inTerminal = true;
-
+                ChatLib.chat(Player.getContainer().getName())
                 let c = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)
                 if(!c) return;
                 let color = c[1].toLowerCase();
