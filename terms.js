@@ -72,6 +72,19 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
+            } else if (iName == "Change all to same color!") {
+                new Thread(() => {
+                    this.inTerminal = true;
+
+                    let a = this.getStartsWith(iName) 
+
+                    a.forEach((slot) => {
+                        this.click(slot);
+                        Thread.sleep(100)
+                    })
+
+                    this.inTerminal = false;
+                }).start()
             }
         })
     }
@@ -79,7 +92,7 @@ class TerminalHandler {
     mode(array) {
         return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
     }
-    
+
     getSetAll() {
         let optimal = this.mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
         let r = [];
