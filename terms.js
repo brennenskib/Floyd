@@ -103,11 +103,11 @@ class TerminalHandler {
         Player.getContainer().getItems().forEach((pane, index) => {
             let panes = [1,2,3,4,5]
             let click = [16,25,34,43];
-            
+
             Player.getContainer().getItems().forEach((pane, index) => {
                 if (pane?.getDamage() == 15 || !pane) return;
                 if (pane?.getDamage() == 2) {
-
+                    
                 }
             });
         })
