@@ -102,6 +102,10 @@ class TerminalHandler {
             } else if (iName == "Click the button on time!") {
                 let a = [9, 18, 27, 36]
                 let slots = [16, 25, 34, 43]
+
+                for (let index = 0; index < a.length; index++) {
+                    let s = Player.getContainer().getStackInSlot()
+                }
             }
         })
     }
