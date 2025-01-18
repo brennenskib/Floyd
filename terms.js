@@ -11,6 +11,7 @@ class TerminalHandler {
     constructor() {
         this.windowId = 0;
         this.inTerminal = false;
+        this.colorCycle = [4, 13, 11, 14, 1];
         this.colorList = {
             "light gray": "silver",
             "light grey": "silver",
