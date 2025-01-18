@@ -27,7 +27,7 @@ class TerminalHandler {
             } else return;
         });
 
-        return indexes.find(index => index !== undefined);
+        return indexes
     }
 
     clickTerms(slot) {
