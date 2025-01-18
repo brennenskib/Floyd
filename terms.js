@@ -87,31 +87,9 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-                let stage = 9;
                 new Thread(() => {
                     this.inTerminal = true;
-                    let cache = true;
 
-                    while (cache) {
-                        let skibidi;
-
-                        Player.getContainer().getItems().forEach((item, index) => {
-                            if (index > 8) return;
-                            if (item?.getMetadata() == 10) skibidi = index;
-                        });
-
-                        let slot = skibidi ?? 0;
-
-                        if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
-                            this.click(7 + stage);
-                            ChatLib.chat(7 + stage)
-                            Thread.sleep(750);
-                            stage += 9;
-                        }
-                        if (stage > 36) {
-                            cache = false;
-                        }
-                    }
                 }).start();
             }
         })
@@ -119,6 +97,17 @@ class TerminalHandler {
 
     mode(array) {
         return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
+    }
+
+    getMelody() {
+        Player.getContainer().getItems().forEach((pane, index) => {
+            let panes = [1,2,3,4,5]
+
+            Player.getContainer().getItems().forEach((pane, index) => {
+                if (pane?.getDamage() == 15 || !pane) return;
+                for (let i = 0; i < Math.abs(this.colorCycle.indexOf(optimal) - this.colorCycle.indexOf(pane.getDamage())); i++) r.push(index);
+            });
+        })
     }
 
     getSetAll() {
