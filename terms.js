@@ -101,31 +101,14 @@ class TerminalHandler {
                 }).start()
             } else if (iName == "Click the button on time!") {
                 this.inTerminal = true;
-                const s = new Thread(() => {
-                    ChatLib.chat('test')
-                    let a = [9, 18, 27, 36]
-                    let slots = [16, 25, 34, 43]
-                    let i;
-        
-                    for (let index = 1; index < 5; index++) {
-                        let slot = Player.getContainer().getStackInSlot(index);
-                        if(!slot || slot.getDamage() !== 2) return;
-                        i = index;
-                    }
-        
-                    for (let index = 0; index < 4; index++) {
-                        let s = Player.getContainer().getStackInSlot(a[index] + (index+1))
-                        if(!s) return;
-                        if(s?.getDamage() == 5 && (index+1) == i) {
-                            this.click(slots[index])
-                        }
-                    }
 
-                    s.start()
-                })
-                s.start()
             }
         })
+
+        this.melody = register('tick', () => {
+
+        })
+        this.melody.unregister();
     }
 
     mode(array) {
