@@ -87,7 +87,18 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Correct all the panes!") {
+                new Thread(() => {
+                    this.inTerminal = true;
 
+                    let a = this.getSetAll();
+
+                    a.forEach((slot) => {
+                        this.click(slot);
+                        Thread.sleep(100)
+                    })
+
+                    this.inTerminal = false;
+                }).start()
             }
         })
     }
