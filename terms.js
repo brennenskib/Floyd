@@ -104,7 +104,7 @@ class TerminalHandler {
                 let slots = [16, 25, 34, 43]
 
                 for (let index = 0; index < a.length; index++) {
-                    let s = Player.getContainer().getStackInSlot()
+                    let s = Player.getContainer().getStackInSlot(a[index]+(index+1))
                 }
             }
         })
