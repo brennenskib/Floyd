@@ -13,7 +13,7 @@ class TerminalHandler {
         register("tick", () => {
             //if (obj.AutoTerms && isFloor7()) {
                 if(Player.getContainer().getName() == "Click in order!") {
-                    this.clickTerms(this.getClickInOrderIndex());
+                    ChatLib.chat(this.getClickInOrderIndex().toString());
                 }
             //}
         })
