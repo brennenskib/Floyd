@@ -105,6 +105,7 @@ class TerminalHandler {
 
         return r;
     }
+    
     getStartsWith(iName) {
         let letter = iName.match(/What starts with: '(\w+)'?/)[1];
         let r = [];
