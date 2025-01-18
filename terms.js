@@ -38,7 +38,7 @@ class TerminalHandler {
 
     clickTerms(slot) {
         new Thread(() => {
-            let windowId = Player.getPlayer().field_71070_bA.field_75152_c;
+            let windowId = Player.getContainer().getWindowId();
             if (Client.currentGui.get() == null) return;
             Client.getMinecraft().field_71442_b.func_78753_a(windowId, slot, 2, 3, Player.getPlayer());
         }).start();
