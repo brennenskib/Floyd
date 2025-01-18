@@ -110,11 +110,11 @@ class TerminalHandler {
                     i = index;
                 }
 
-                for (let index = 0; index < 5; index++) {
+                for (let index = 0; index < 4; index++) {
                     let s = Player.getContainer().getStackInSlot(a[index] + (index+1))
                     if(!s) return;
                     if(s?.getDamage() == 5 && (index+1) == i) {
-                        this.click(this.slots[])
+                        this.click(this.slots[index])
                     }
                 }
             }
