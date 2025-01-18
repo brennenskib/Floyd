@@ -18,7 +18,7 @@ class TerminalHandler {
             this.windowId = p.func_148901_c(); // getWindowId
         }).setFilteredClass(S2DPacketOpenWindow);
 
-        register("step", () => {
+        register("tick", () => {
             if(this.inTerminal && !Player.getContainer()) return;
             if(Player.getContainer().getName() == "Click in order!") {
                 new Thread(() => {
