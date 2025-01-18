@@ -105,7 +105,9 @@ class TerminalHandler {
 
             Player.getContainer().getItems().forEach((pane, index) => {
                 if (pane?.getDamage() == 15 || !pane) return;
-                for (let i = 0; i < Math.abs(this.colorCycle.indexOf(optimal) - this.colorCycle.indexOf(pane.getDamage())); i++) r.push(index);
+                if (pane?.getDamage() == 2) {
+                    
+                }
             });
         })
     }
