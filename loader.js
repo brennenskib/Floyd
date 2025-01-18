@@ -1,3 +1,4 @@
+/*
 function getPath() {
     return FileLib.isDirectory(`./config/ChatTriggers/modules/Floyd-main`) ? "Floyd-main" : "Floyd";
 }
@@ -41,3 +42,6 @@ features.listFiles().forEach((file) => {
         }
     }
 })
+*/
+
+// im gonna refactor the code base :)
