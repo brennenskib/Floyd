@@ -7,7 +7,7 @@ class TerminalHandler {
 
         register('guiOpened', (event) => {
             this.windowId = Client.currentGui.get()
-            ChatLib.chat(this.windowId instanceof me.odinmain.features.impl.floor7.p3.termsim.TermSimGui)
+            ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
         })
 
         register("tick", () => {
