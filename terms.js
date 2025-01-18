@@ -101,7 +101,8 @@ class TerminalHandler {
                 }).start()
             } else if (iName == "Click the button on time!") {
                 this.inTerminal = true;
-                while(this.inTerminal) {
+                while(true) {
+                    ChatLib.chat('test')
                     let a = [9, 18, 27, 36]
                     let slots = [16, 25, 34, 43]
                     let i;
