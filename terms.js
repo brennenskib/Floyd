@@ -53,8 +53,15 @@ class TerminalHandler {
             if (Player.getContainer().getName().startsWith("What starts with: ")) {
                 this.inTerminal = true;
 
-                let a = this.getStartsWith() 
-
+                let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
+                let r = [];
+        
+                Player.getContainer().getItems().forEach((item, index) => {
+                    let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
+                    Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
+                    if (itemName.includes(color) && index < 44) r.push(index);
+                });
+                
                 a.forEach(slot => {
                     this.click(parseInt(slot));
                     Thread.sleep(150 + (Math.random()*150))
