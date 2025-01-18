@@ -15,7 +15,7 @@ class TerminalHandler {
         };
 
         register('guiOpened', (event) => {
-            ChatLib.chat('opening new gui ')
+            ChatLib.chat('opening new gui ' + Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)
         })
         register('packetReceived', (p, e) => {
             ChatLib.chat('opening new gui')
