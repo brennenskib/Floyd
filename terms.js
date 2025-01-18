@@ -50,7 +50,7 @@ class TerminalHandler {
         });
         
         let i = r.find(index => index !== undefined);
-        ChatLib.chat(i)
+        if(i == undefined) return;
         this.clicked.push(i);
         return i;
     }
