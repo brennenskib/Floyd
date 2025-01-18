@@ -23,7 +23,6 @@ class TerminalHandler {
         let indexes = [];
         Player.getContainer().getItems().forEach((item, index) => {
             if (item?.getMetadata() === 14) {
-                ChatLib.chat(item.getStackSize())
                 indexes[parseInt(ChatLib.removeFormatting(item.getName())) - 1] = index;
             }
         });
