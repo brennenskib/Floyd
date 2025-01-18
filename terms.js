@@ -71,17 +71,6 @@ class TerminalHandler {
             }
         })
     }
-    
-    getStartsWith() {
-        let letter = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)[1];
-        let r = [];
-
-        Player.getContainer().getItems().forEach((item, index) => {
-            if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) r.push(index);
-        });
-
-        return r;
-    }
 
     getColorIndex() {
         let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
