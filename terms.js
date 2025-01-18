@@ -42,9 +42,13 @@ class TerminalHandler {
         let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
 
         Player.getContainer().getItems().forEach((item, index) => {
+            if(index == 0 || index == undefined) return;
+            
             let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
             Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
-            if (itemName.includes(color) && index < 44) return parseInt(index);
+            if (itemName.includes(color) && index < 44) {
+                return parseInt(index);
+            }
         });
     }
 
