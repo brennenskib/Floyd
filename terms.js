@@ -26,7 +26,7 @@ class TerminalHandler {
 
                     let a = this.getClickInOrderIndex();
 
-                    a.forEach((slot, index) => {
+                    a.forEach((slot) => {
                         this.click(slot);
                         Thread.sleep(10)
                     })
