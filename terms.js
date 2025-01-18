@@ -41,7 +41,7 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(150 + (Math.random() * 50))
+                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
