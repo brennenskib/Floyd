@@ -4,6 +4,15 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 class TerminalHandler {
     constructor() {
         this.windowId = false;
+        
+        this.colorList = {
+            "light gray": "silver",
+            "light grey": "silver",
+            "wool": "white wool",
+            "ink": "black ink",
+            "lapis": "blue lapis",
+            "cocoa": "brown cocoa"
+        };
 
         register('guiOpened', (event) => {
             this.windowId = Client.currentGui.get()
