@@ -51,7 +51,7 @@ class TerminalHandler {
             }
 
             if (Player.getContainer().getName().startsWith("What starts with: ")) {
-                let letter = inventoryName.match(/What starts with: '(\w+)'?/)[1];
+                let letter = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)[1];
                 Player.getContainer().getItems().forEach((item, index) => {
                     if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) this.correctPanes.push(index);
                 });
