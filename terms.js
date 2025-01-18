@@ -21,9 +21,9 @@ class TerminalHandler {
         register("step", () => {
             if(this.inTerminal) return;
             if(Player.getContainer().getName() == "Click in order!") {
-                this.inTerminal = true;
                 new Thread(() => {
                     this.inTerminal = true;
+
                     this.getClickInOrderIndex().forEach(index => {
                         this.click(index);
                         Thread.sleep(150 + (Math.random()*50))
@@ -34,6 +34,7 @@ class TerminalHandler {
             if (Player.getContainer().getName().startsWith("Select all the ")) {
                 new Thread(() => {
                     this.inTerminal = true;
+
                     this.getColorIndex().forEach(index => {
                         this.click(index);
                         Thread.sleep(150 + (Math.random()*50))
