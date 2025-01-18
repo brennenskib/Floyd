@@ -40,8 +40,8 @@ class TerminalHandler {
                     a.forEach((slot, index) => {
                         this.click(slot);
                         Thread.sleep(150 + (Math.random()*50))
-                        if(index == (a.length - 2)) this.inTerminal = false;
                         ChatLib.chat(this.inTerminal)
+                        if(index == (a.length - 2)) this.inTerminal = false;
                     })
                 }).start()
             }
