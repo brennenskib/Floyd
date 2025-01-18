@@ -100,7 +100,7 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-                [10,19,28,37]
+                let a = [9, 18, 27, 36]
             }
         })
     }
