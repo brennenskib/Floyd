@@ -20,9 +20,9 @@ class TerminalHandler {
         })
 
         register('packetReceived', (p, e) => {
-
+            this.windowId = p.func_148901_c(); // getWindowId
         }).setFilteredClass(S2DPacketOpenWindow);
-        
+
         register("step", () => {
             if(Player.getContainer().getName() == "Click in order!") {
                 this.click(this.getClickInOrderIndex());
