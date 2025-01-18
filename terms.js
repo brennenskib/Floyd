@@ -20,6 +20,7 @@ class TerminalHandler {
             "yellow": "yellow",
             "magenta": "magenta",
             "cyan": "cyan",
+            "red": "red",
         };
 
         // ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
