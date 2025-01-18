@@ -28,7 +28,6 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
@@ -41,7 +40,6 @@ class TerminalHandler {
 
                     a.forEach((slot) => {
                         this.click(slot);
-                        Thread.sleep(150)
                     })
 
                     this.inTerminal = false;
