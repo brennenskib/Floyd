@@ -15,6 +15,7 @@ class TerminalHandler {
         };
 
         register('packetReceived', (p, e) => {
+            ChatLib.chat('opening new gui')
             this.windowId = p.func_148901_c(); // getWindowId
         }).setFilteredClass(S2DPacketOpenWindow);
 
