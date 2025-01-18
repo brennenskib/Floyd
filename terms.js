@@ -53,7 +53,9 @@ class TerminalHandler {
             if (Player.getContainer().getName().startsWith("What starts with: ")) {
                 this.inTerminal = true;
 
-                let color = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)[1].toLowerCase();
+                let c = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)
+                if(!c) return;
+                let color = c[1].toLowerCase();
                 let r = [];
         
                 Player.getContainer().getItems().forEach((item, index) => {
