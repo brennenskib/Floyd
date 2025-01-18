@@ -4,6 +4,7 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 class TerminalHandler {
     constructor() {
         this.windowId = false;
+        this.clicked = [];
         
         this.colorList = {
             "light gray": "silver",
@@ -47,8 +48,9 @@ class TerminalHandler {
             Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
             if (itemName.includes(color) && index < 44) r.push(index);
         });
-
-        return r.find(index => index !== undefined);
+        
+        let i = r.find(index => index !== undefined);
+        return i;
     }
 
     getClickInOrderIndex() {
