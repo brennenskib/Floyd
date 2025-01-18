@@ -21,11 +21,9 @@ class TerminalHandler {
             ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
         })
 
-        /*
         register('packetReceived', (p, e) => {
             this.windowId = p.func_148901_c(); // getWindowId
         }).setFilteredClass(S2DPacketOpenWindow);
-        */
 
         register("step", () => {
             if(this.inTerminal) return;
