@@ -113,6 +113,12 @@ class TerminalHandler {
                     panesToBeGreen = [9 + index, 18 + index, 27 + index, 36 + index]
                 }
             });
+
+            panesToBeGreen.forEach((slot, index) => {
+                if(Player.getContainer().getStackInSlot(slot).getDamage() == 5) {
+                    
+                }
+            })
         })
     }
 
