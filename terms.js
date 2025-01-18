@@ -23,8 +23,8 @@ class TerminalHandler {
             if(Player.getContainer().getName() == "Click in order!") {
                 this.inTerminal = true;
                 new Thread(() => {
+                    this.inTerminal = true;
                     this.getClickInOrderIndex().forEach(index => {
-                        ChatLib.chat(index)
                         this.click(index);
                         Thread.sleep(150 + (Math.random()*50))
                     })
