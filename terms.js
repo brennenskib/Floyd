@@ -75,9 +75,7 @@ class TerminalHandler {
 
     click(slot) {
         if(!this.inTerminal) return;
-        new Thread(() => {
-            Client.sendPacket(new C0EPacketClickWindow(this.windowId, slot, 0, 0, null, 0))
-        }).start();
+        Client.sendPacket(new C0EPacketClickWindow(this.windowId, slot, 0, 0, null, 0))
     }
 }
 
