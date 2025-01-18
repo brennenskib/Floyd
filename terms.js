@@ -20,9 +20,13 @@ class TerminalHandler {
         })
         
         register('renderOverlay', () => {
-            if(!Client.currentGui || !this.inTerminal) return;
+            if(!Client.isInGui()) return;
             this.slotsToRender.forEach(slotIndx => {
-                
+                const [ x, y ] = this.getGuiRenderPositions(Client.currentGui.get())
+        
+                const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotNumber)
+        
+                return [x + slot.field_75223_e, y + slot.field_75221_f]
             })
         })  
 
