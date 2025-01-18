@@ -39,7 +39,7 @@ class TerminalHandler {
                         a.forEach(index => {
                             this.click(index);
                             Thread.sleep(150 + (Math.random()*50))
-                            if(index == a.length-1)
+                            if(index == a.length-1) this.inTerminal = false;
                         })
 
                 }).start()
