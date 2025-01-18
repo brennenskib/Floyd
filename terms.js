@@ -63,7 +63,7 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getColorIndex(iName) 
+                    let a = this.getStartsWith(iName) 
 
                     a.forEach((slot) => {
                         this.click(slot);
