@@ -24,10 +24,10 @@ class TerminalHandler {
         Player.getContainer().getItems().forEach((item, index) => {
             if (item?.getMetadata() === 14) {
                 indexes[parseInt(ChatLib.removeFormatting(item.getName())) - 1] = index;
-            }
+            } else return;
         });
 
-        return indexes
+        return indexes.find(index => index !== undefined);
     }
 
     clickTerms(slot) {
