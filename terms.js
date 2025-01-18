@@ -28,14 +28,18 @@ class TerminalHandler {
         register('renderOverlay', () => {
             if(!Client.isInGui()) return;
             this.slotsToRender.forEach(slotIndx => {
-                const [ x, y ] = [
-                    guiContainerLeftField.get(Client.currentGui.get()),
-                    guiContainerTopField.get(Client.currentGui.get())
-                ]
-        
-                const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotIndx)
-        
-                return [x + slot.field_75223_e, y + slot.field_75221_f]
+                const x = guiContainerLeftField.get(Client.currentGui.get())
+                const y = guiContainerTopField.get(Client.currentGui.get())
+                const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotIndx)   
+                
+                Renderer.translate(0, 0, 100)
+                Renderer.drawRect(
+                    Renderer.GREEN,
+                    x + slot.field_75223_e,
+                    y + slot.field_75221_f,
+                    16,
+                    16
+                )
             })
         })  
 
