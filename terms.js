@@ -35,6 +35,7 @@ class TerminalHandler {
             if (Player.getContainer().getName().startsWith("Select all the ")) {
                 new Thread(() => {
                     this.getColorIndex().forEach(index => {
+                        ChatLib.chat(index)
                         this.click(index);
                         Thread.sleep(50)
                     })
