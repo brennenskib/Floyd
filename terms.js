@@ -10,7 +10,6 @@ guiContainerTopField.setAccessible(true)
 class TerminalHandler {
     constructor() {
         this.windowId = 0;
-        this.slotsToRender = [5];
         this.inTerminal = false;
         this.colorList = {
             "light gray": "silver",
@@ -23,25 +22,7 @@ class TerminalHandler {
 
         register('guiClosed', (event) => {
             this.inTerminal = false;
-            this.slotsToRender = [5];
         })
-        
-        register('renderOverlay', () => {
-            if(!Client.isInGui()) return;
-            this.slotsToRender.forEach(slotIndx => {
-                const x = guiContainerLeftField.get(Client.currentGui.get())
-                const y = guiContainerTopField.get(Client.currentGui.get())
-                const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotIndx)   
-                
-                Renderer.drawRect(
-                    Renderer.GREEN,
-                    x + slot.field_75223_e,
-                    y + slot.field_75221_f,
-                    16,
-                    16
-                )
-            })
-        })  
 
         register('packetReceived', (p, e) => {
             ChatLib.chat('opening new gui')
@@ -108,7 +89,6 @@ class TerminalHandler {
 
     click(slot) {
         if(!this.inTerminal) return;
-        this.slotsToRender.push(slot);
         Client.sendPacket(new C0EPacketClickWindow(this.windowId, slot, 0, 0, null, 0))
     }
 }
