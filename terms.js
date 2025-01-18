@@ -14,13 +14,6 @@ class TerminalHandler {
             "cocoa": "brown cocoa"
         };
 
-        // ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
-
-        register('guiOpened', (event) => {
-            this.windowId = Player.getPlayer().field_71070_bA.field_75152_c
-            ChatLib.chat(this.windowId)
-        })
-
         register('packetReceived', (p, e) => {
             this.windowId = p.func_148901_c(); // getWindowId
         }).setFilteredClass(S2DPacketOpenWindow);
