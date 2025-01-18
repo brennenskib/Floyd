@@ -90,11 +90,11 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let data = {
-                        1: [
-                            
+                    let data = [
+                        [
+
                         ]
-                    }
+                    ]
                     let a = this.getCorrectAll();
 
                     a.forEach((slot) => {
