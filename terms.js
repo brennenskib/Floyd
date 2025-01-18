@@ -11,7 +11,7 @@ class TerminalHandler {
     constructor() {
         this.windowId = 0;
         this.inTerminal = false;
-        this.colorCycle = [4, 13, 11, 14, 1];
+        this.colorCycle = [1, 4, 13, 11, 14];
         this.colorList = {
             "light gray": "silver",
             "light grey": "silver",
@@ -104,6 +104,32 @@ class TerminalHandler {
         });
 
         return r;
+
+        const panes = items.filter(item => item && item.metadata !== 15 && Item.getIdFromItem(item.item) === 160);
+        let temp = Array.from({ length: 100 }, (_, i) => i);
+    
+        if (typeof lastRubixSolution !== 'undefined' && lastRubixSolution !== null) {
+            temp = panes.flatMap(pane => 
+                pane.metadata !== lastRubixSolution 
+                    ? Array(dist(colorOrder.indexOf(pane.metadata), colorOrder.indexOf(lastRubixSolution))).fill(pane) 
+                    : []
+            ).map(pane => items.indexOf(pane));
+        } else {
+            for (const color of colorOrder) {
+                const temp2 = panes.flatMap(pane => 
+                    pane.metadata !== color 
+                        ? Array(dist(colorOrder.indexOf(pane.metadata), colorOrder.indexOf(color))).fill(pane) 
+                        : []
+                ).map(pane => items.indexOf(pane));
+    
+                if (getRealSize(temp2) < getRealSize(temp)) {
+                    temp = temp2;
+                    lastRubixSolution = color;
+                }
+            }
+        }
+    
+        return temp;
     }
     getStartsWith(iName) {
         let letter = iName.match(/What starts with: '(\w+)'?/)[1];
