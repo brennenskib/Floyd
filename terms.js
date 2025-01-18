@@ -4,6 +4,7 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 class TerminalHandler {
     constructor() {
         this.windowId = 0;
+        this.slotsToRender = [];
         this.inTerminal = false;
         this.colorList = {
             "light gray": "silver",
@@ -18,6 +19,13 @@ class TerminalHandler {
             this.inTerminal = false;
         })
         
+        register('renderOverlay', () => {
+            if(!Client.currentGui || !this.inTerminal) return;
+            this.slotsToRender.forEach(slotIndx => {
+                
+            })
+        })  
+
         register('packetReceived', (p, e) => {
             ChatLib.chat('opening new gui')
             this.windowId = p.func_148901_c(); // getWindowId
