@@ -116,7 +116,7 @@ class TerminalHandler {
                         let s = Player.getContainer().getStackInSlot(a[index] + (index+1))
                         if(!s) return;
                         if(s?.getDamage() == 5 && (index+1) == i) {
-                            this.click(this.slots[index])
+                            this.click(slots[index])
                         }
                     }
                 }
