@@ -51,29 +51,31 @@ class TerminalHandler {
             }
 
             if (Player.getContainer().getName().startsWith("What starts with: ")) {
-                this.inTerminal = true;
-                ChatLib.chat(Player.getContainer().getName())
-                let c = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)
-                if(!c) return;
-                let color = c[1].toLowerCase();
-                let r = [];
-        
-                Player.getContainer().getItems().forEach((item, index) => {
-                    let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
-                    Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
-                    if (itemName.includes(color) && index < 44) r.push(index);
-                });
+                new Thread(() => {
+                    this.inTerminal = true;
 
-                r.forEach(slot => {
-                    this.click(parseInt(slot));
-                    Thread.sleep(150 + (Math.random()*150))
-                })
+                    let a = this.getColorIndex() 
 
-                this.inTerminal = false;
+                    a.forEach((slot) => {
+                        this.click(slot);
+                        Thread.sleep(150 + (Math.random()*150))
+                    })
+
+                    this.inTerminal = false;
+                }).start()
+
             }
         })
     }
 
+    getStartsWith() {
+        let letter = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)[1];
+        let r = [];
+
+        Player.getContainer().getItems().forEach((item, index) => {
+            if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) this.correctPanes.push(index);
+        });
+    }
     getColorIndex() {
         let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
         let r = [];
