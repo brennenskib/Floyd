@@ -35,7 +35,7 @@ class TerminalHandler {
             if (Player.getContainer().getName().startsWith("Select all the ")) {
                 this.click(this.getColorIndex());
             }
-        }).setFps(500)
+        })//.setFps(500)
     }
     
     getColorIndex() {
