@@ -19,7 +19,7 @@ class TerminalHandler {
         }).setFilteredClass(S2DPacketOpenWindow);
 
         register("step", () => {
-            if(this.inTerminal) return;
+            if(this.inTerminal && !Player.getContainer()) return;
             if(Player.getContainer().getName() == "Click in order!") {
                 new Thread(() => {
                     this.inTerminal = true;
