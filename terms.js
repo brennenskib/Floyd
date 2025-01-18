@@ -88,7 +88,7 @@ class TerminalHandler {
                 }).start()
             } else if (iName == "Click the button on time!") {
                 let stage = 9;
-                
+
                 new Thread(() => {
                     this.inTerminal = true;
                     let cache = true;
@@ -96,10 +96,10 @@ class TerminalHandler {
                     while (cache) {
                         Player.getContainer().getItems().forEach((item, index) => {
                             if (index > 8) return;
-                            if (item?.getMetadata() == 10) this.slot = index;
+                            if (item?.getMetadata() == 10) a = index;
                         });
 
-                        let slot = this.slot ?? 0;
+                        let slot = a ?? 0;
 
                         if ((slot + stage) < Player.getContainer().getSize() && Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
                             this.click(7 + stage);
