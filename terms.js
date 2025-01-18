@@ -100,7 +100,7 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-
+                this.melody.register()
             }
         })
 
@@ -127,7 +127,7 @@ class TerminalHandler {
             if (index > 8) return;
             if (item?.getMetadata() == 10) slot = index;
         });
-        
+
         return slot;
     }
 
