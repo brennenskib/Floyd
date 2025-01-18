@@ -48,7 +48,7 @@ class TerminalHandler {
             if (itemName.includes(color) && index < 44) r.push(index);
         });
 
-        return r;
+        return r.find(index => index !== undefined);
     }
 
     getClickInOrderIndex() {
