@@ -87,7 +87,22 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-                this.getMelody()
+                this.inTerminal = true;
+                let stage = 9;
+
+                new Thread(() => {
+                    while (this.inTerm) {
+                        let slot = this.onTimeSolver() ?? 0;
+                        if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
+                            this.click(7 + stage);
+                            Thread.sleep(750);
+                            stage += 9;
+                        }
+                        if (stage > 36) {
+                            this.inTerminal = false;
+                        }
+                    }
+                }).start();
             }
         })
     }
