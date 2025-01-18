@@ -86,6 +86,24 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
+            } else if (iName == "Click the button on time!") {
+                let stage = 9;
+                new Thread(() => {
+                    this.inTerminal = true;
+                    let cache = true;
+
+                    while (cache) {
+                        let slot = this.onTimeSolver() ?? 0;
+                        if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
+                            this.click(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer());
+                            Thread.sleep(750);
+                            stage += 9;
+                        }
+                        if (stage > 36) {
+                            cache = false;
+                        }
+                    }
+                }).start();
             }
         })
     }
@@ -105,7 +123,7 @@ class TerminalHandler {
 
         return r;
     }
-    
+
     getStartsWith(iName) {
         let letter = iName.match(/What starts with: '(\w+)'?/)[1];
         let r = [];
