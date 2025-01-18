@@ -102,7 +102,7 @@ class TerminalHandler {
     getMelody() {
         Player.getContainer().getItems().forEach((pane, index) => {
             let panes = [1,2,3,4,5]
-            let click = [16,25,34,43];
+            let panesToBeGreen = [];
             let row;
             let toClick;
 
@@ -110,6 +110,7 @@ class TerminalHandler {
                 if (pane?.getDamage() == 15 || !pane) return;
                 if (pane?.getDamage() == 2 && panes.includes(index)) {
                     row = panes[index]
+                    panesToBeGreen = [9 + index, 18 + index, 27 + index, 36 + index]
                 }
             });
         })
