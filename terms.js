@@ -87,10 +87,7 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-                new Thread(() => {
-                    this.inTerminal = true;
-
-                }).start();
+                this.getMelody()
             }
         })
     }
