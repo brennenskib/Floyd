@@ -51,10 +51,16 @@ class TerminalHandler {
             }
 
             if (Player.getContainer().getName().startsWith("What starts with: ")) {
-                let letter = Player.getContainer().getName().match(/What starts with: '(\w+)'?/)[1];
-                Player.getContainer().getItems().forEach((item, index) => {
-                    if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) this.correctPanes.push(index);
-                });
+                this.inTerminal = true;
+
+                let a = this.getStartsWith() 
+
+                a.forEach((slot) => {
+                    this.click(slot);
+                    Thread.sleep(150 + (Math.random()*150))
+                })
+
+                this.inTerminal = false;
             }
         })
     }
@@ -69,7 +75,7 @@ class TerminalHandler {
 
         return r;
     }
-    
+
     getColorIndex() {
         let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
         let r = [];
