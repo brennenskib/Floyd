@@ -36,12 +36,12 @@ class TerminalHandler {
                     this.inTerminal = true;
 
                     let a = this.getColorIndex() 
-                        a.forEach(index => {
-                            this.click(index);
-                            Thread.sleep(150 + (Math.random()*50))
-                            if(index == a.length-1) this.inTerminal = false;
-                        })
 
+                    a.forEach(index => {
+                        this.click(index);
+                        Thread.sleep(150 + (Math.random()*50))
+                        if(index == a.length-1) this.inTerminal = false;
+                    })
                 }).start()
             }
         })
