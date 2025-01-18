@@ -11,11 +11,9 @@ class TerminalHandler {
         })
 
         register("tick", () => {
-            //if (obj.AutoTerms && isFloor7()) {
-                if(Player.getContainer().getName() == "Click in order!") {
-                    ChatLib.chat(this.getClickInOrderIndex().toString());
-                }
-            //}
+            if(Player.getContainer().getName() == "Click in order!") {
+                click(this.getClickInOrderIndex());
+            }
         })
     }
     
@@ -30,7 +28,7 @@ class TerminalHandler {
         return indexes.find(index => index !== undefined)
     }
 
-    clickTerms(slot) {
+    click(slot) {
         new Thread(() => {
             let windowId = Player.getPlayer().field_71070_bA.field_75152_c
             ChatLib.chat(windowId)
