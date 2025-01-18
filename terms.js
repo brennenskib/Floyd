@@ -54,7 +54,7 @@ class TerminalHandler {
                 this.inTerminal = true;
 
                 let c = Player.getContainer().getName().match(/Select all the (.+) items!/)
-                ChatLib.chat(c.toString())
+                if(!c) return;
                 let color = color[1].toLowerCase();
                 let r = [];
         
