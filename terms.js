@@ -91,13 +91,13 @@ class TerminalHandler {
                 let stage = 9;
                 let t;
 
-                Player.getContainer().getItems().forEach((item, index) => {
-                    if (index > 8) return;
-                    if (item?.getMetadata() == 10) t = index;
-                });
-
                 new Thread(() => {
                     while (this.inTerm) {
+                        Player.getContainer().getItems().forEach((item, index) => {
+                            if (index > 8) return;
+                            if (item?.getMetadata() == 10) t = index;
+                        });
+                        
                         let slot = t ?? 0;
                         if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
                             this.click(7 + stage);
