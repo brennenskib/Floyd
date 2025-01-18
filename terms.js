@@ -35,7 +35,8 @@ class TerminalHandler {
             if (Player.getContainer().getName().startsWith("Select all the ")) {
                 new Thread(() => {
                     this.getColorIndex().forEach(index => {
-                        this.click(this.getColorIndex());
+                        this.click(index);
+                        Thread.sleep(50)
                     })
                 })
             }
