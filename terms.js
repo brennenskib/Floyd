@@ -54,7 +54,7 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getColorIndex() 
+                    let a = this.getStartsWith() 
 
                     a.forEach((slot) => {
                         this.click(slot);
@@ -63,7 +63,6 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
-
             }
         })
     }
@@ -78,6 +77,7 @@ class TerminalHandler {
 
         return r;
     }
+    
     getColorIndex() {
         let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
         let r = [];
