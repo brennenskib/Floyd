@@ -95,7 +95,7 @@ class TerminalHandler {
                     while (cache) {
                         let slot = this.onTimeSolver() ?? 0;
                         if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
-                            this.click(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer());
+                            this.click(7 + stage);
                             Thread.sleep(750);
                             stage += 9;
                         }
