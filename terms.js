@@ -31,11 +31,12 @@ class TerminalHandler {
 
         register("tick", () => {
             if(this.inTerminal || !Player.getContainer()) return;
-            if(Player.getContainer().getName() == "Click in order!") {
+            let iName = Player.getContainer().getName()
+            if(iName == "Click in order!") {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getClickInOrderIndex();
+                    let a = this.getClickInOrderIndex(iName);
 
                     a.forEach((slot, index) => {
                         this.click(slot);
@@ -45,11 +46,24 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
-            } else if (Player.getContainer().getName().startsWith("Select all the ")) {
+            } else if (iName.startsWith("Select all the ")) {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getColorIndex() 
+                    let a = this.getColorIndex(iName) 
+
+                    a.forEach((slot) => {
+                        this.click(slot);
+                        Thread.sleep(100)
+                    })
+
+                    this.inTerminal = false;
+                }).start()
+            } else if (iName.startsWith("What starts with: ")) {
+                new Thread(() => {
+                    this.inTerminal = true;
+
+                    let a = this.getColorIndex(iName) 
 
                     a.forEach((slot) => {
                         this.click(slot);
@@ -62,8 +76,19 @@ class TerminalHandler {
         })
     }
 
-    getColorIndex() {
-        let color = Player?.getContainer()?.getName()?.match(/Select all the (.+) items!/)[1]?.toLowerCase();
+    getStartsWith(iName) {
+        let letter = iName.match(/What starts with: '(\w+)'?/)[1];
+        let r = [];
+
+        Player.getContainer().getItems().forEach((item, index) => {
+            if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) r.push(index);
+        });
+
+        return r;
+    }
+
+    getColorIndex(iName) {
+        let color = iName.match(/Select all the (.+) items!/)[1]?.toLowerCase();
         let r = [];
 
         Player.getContainer().getItems().forEach((item, index) => {
