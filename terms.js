@@ -1,6 +1,12 @@
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
 const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPacketOpenWindow");
 
+const GuiContainer = Java.type("net.minecraft.client.gui.inventory.GuiContainer")
+const guiContainerLeftField = GuiContainer.class.getDeclaredField("field_147003_i")
+const guiContainerTopField = GuiContainer.class.getDeclaredField("field_147009_r")
+guiContainerLeftField.setAccessible(true)
+guiContainerTopField.setAccessible(true)
+
 class TerminalHandler {
     constructor() {
         this.windowId = 0;
@@ -23,8 +29,8 @@ class TerminalHandler {
             if(!Client.isInGui()) return;
             this.slotsToRender.forEach(slotIndx => {
                 const [ x, y ] = [
-                    guiContainerLeftField.get(mcGuiContainer),
-                    guiContainerTopField.get(mcGuiContainer)
+                    guiContainerLeftField.get(Client.currentGui.get()),
+                    guiContainerTopField.get(Client.currentGui.get())
                 ]
         
                 const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotIndx)
