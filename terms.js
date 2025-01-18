@@ -101,6 +101,7 @@ class TerminalHandler {
                 }).start()
             } else if (iName == "Click the button on time!") {
                 let a = [9, 18, 27, 36]
+                let slots = [16, 25, 34, 43]
             }
         })
     }
