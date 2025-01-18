@@ -33,7 +33,6 @@ class TerminalHandler {
                 const y = guiContainerTopField.get(Client.currentGui.get())
                 const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotIndx)   
                 
-                Renderer.translate(0, 0, 100)
                 Renderer.drawRect(
                     Renderer.GREEN,
                     x + slot.field_75223_e,
