@@ -22,7 +22,10 @@ class TerminalHandler {
         register('renderOverlay', () => {
             if(!Client.isInGui()) return;
             this.slotsToRender.forEach(slotIndx => {
-                const [ x, y ] = this.getGuiRenderPositions(Client.currentGui.get())
+                const [ x, y ] = [
+                    guiContainerLeftField.get(mcGuiContainer),
+                    guiContainerTopField.get(mcGuiContainer)
+                ]
         
                 const slot = Client.currentGui.get().field_147002_h.func_75139_a(slotIndx)
         
