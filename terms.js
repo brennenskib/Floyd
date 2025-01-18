@@ -90,7 +90,7 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getSetAll();
+                    let a = this.getCorrectAll();
 
                     a.forEach((slot) => {
                         this.click(slot);
