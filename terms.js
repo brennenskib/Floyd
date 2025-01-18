@@ -14,8 +14,8 @@ class TerminalHandler {
             "cocoa": "brown cocoa"
         };
 
-        register('guiOpened', (event) => {
-            ChatLib.chat('opening new gui ' + Client.currentGui.get() instanceof net.minecraft.client.gui.inventory.GuiChest)
+        register('guiClosed', (event) => {
+            this.inTerminal = false;
         })
         register('packetReceived', (p, e) => {
             ChatLib.chat('opening new gui')
