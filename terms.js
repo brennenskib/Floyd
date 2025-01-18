@@ -36,7 +36,7 @@ class TerminalHandler {
                 new Thread(() => {
                     this.inTerminal = true;
 
-                    let a = this.getClickInOrderIndex(iName);
+                    let a = this.getClickInOrderIndex();
 
                     a.forEach((slot, index) => {
                         this.click(slot);
