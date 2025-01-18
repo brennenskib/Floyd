@@ -99,36 +99,8 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
-            } else if (iName == "Click the button on time!") {
-                this.inTerminal = true;
-                let stage = 9;
-
-                new Thread(() => {
-                    while (this.inTerminal) {
-                        let slot = this.onTimeSolver() ?? 0;
-                        if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
-                            this.click(7 + stage)
-                            Thread.sleep(750);
-                            stage += 9;
-                        }
-                        if (stage > 36) {
-                            this.inTerminal = false;
-                        }
-                    }
-                }).start();
             }
         })
-    }
-
-    onTimeSolver() {
-        let slot;
-
-        Player.getContainer().getItems().forEach((item, index) => {
-            if (index > 8) return;
-            if (item?.getMetadata() == 10) slot = index;
-        });
-
-        return slot;
     }
 
     mode(array) {
