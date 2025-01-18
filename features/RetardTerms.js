@@ -1,6 +1,5 @@
-/*
-const FloydRegister = global.floyd.DynamicReload.FloydRegister;
-const obj = global.floyd.obj;
+
+const FloydRegister = global.floyd.DynamicReload.FloydRegister;const obj = global.floyd.obj;
 const isFloor7 = global.floyd.utils.isFloor7;
 const prefix = global.floyd.utils.prefix;
 const pressAllPressedMovementKeys = global.floyd.utils.pressAllPressedMovementKeys;
@@ -154,4 +153,3 @@ class TerminalHandler {
 }
 
 new TerminalHandler();
-*/
