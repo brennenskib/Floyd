@@ -22,13 +22,6 @@ class TerminalHandler {
                 this.getCorrectPanes()
             }
         })
-
-        FloydRegister(net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent.Pre, event => {
-            if(this.inTerm) {
-                cancel(event);
-                pressAllPressedMovementKeys()
-            }
-        });
     }
     
     getClickInOrderIndex() {
@@ -38,7 +31,7 @@ class TerminalHandler {
                 indexes[parseInt(ChatLib.removeFormatting(item.getName())) - 1] = index;
             }
         });
-        
+
         return indexes.find(index => index !== undefined);
     }
 
