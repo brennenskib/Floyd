@@ -109,7 +109,7 @@ class TerminalHandler {
             Player.getContainer().getItems().forEach((pane, index) => {
                 if (pane?.getDamage() == 15 || !pane) return;
                 if (pane?.getDamage() == 2 && panes.includes(index)) {
-                    
+                    row = panes[index];
                 }
             });
         })
