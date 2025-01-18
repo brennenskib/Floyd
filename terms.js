@@ -14,6 +14,9 @@ class TerminalHandler {
             "cocoa": "brown cocoa"
         };
 
+        register('guiOpened', (event) => {
+            ChatLib.chat('opening new gui ')
+        })
         register('packetReceived', (p, e) => {
             ChatLib.chat('opening new gui')
             this.windowId = p.func_148901_c(); // getWindowId
