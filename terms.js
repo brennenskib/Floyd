@@ -88,22 +88,21 @@ class TerminalHandler {
                 }).start()
             } else if (iName == "Click the button on time!") {
                 let stage = 9;
-
                 new Thread(() => {
                     this.inTerminal = true;
                     let cache = true;
 
                     while (cache) {
-                        let a;
-                        
+                        let slot;
+
                         Player.getContainer().getItems().forEach((item, index) => {
                             if (index > 8) return;
-                            if (item?.getMetadata() == 10) a = index;
+                            if (item?.getMetadata() == 10) slot = index;
                         });
 
-                        let slot = a ?? 0;
+                        let slot = this.slot ?? 0;
 
-                        if ((slot + stage) < Player.getContainer().getSize() && Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
+                        if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
                             this.click(7 + stage);
                             Thread.sleep(750);
                             stage += 9;
@@ -119,14 +118,6 @@ class TerminalHandler {
 
     mode(array) {
         return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
-    }
-
-    onTimeSolver() {
-        Player.getContainer().getItems().forEach((item, index) => {
-            if (index > 8) return;
-            if (item?.getMetadata() == 10) this.slot = index;
-        });
-        return this.slot;
     }
 
     getSetAll() {
