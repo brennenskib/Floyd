@@ -6,12 +6,12 @@ class TerminalHandler {
         this.windowId = false;
         
         this.colorList = {
-            "light gray": "silver",
-            "light grey": "silver",
-            "wool": "white wool",
-            "ink": "black ink",
-            "lapis": "blue lapis",
-            "cocoa": "brown cocoa",
+            "silver": "light gray",
+            "silver": "light grey",
+            "white wool": "wool",
+            "black ink": "ink",
+            "blue lapis": "lapis",
+            "brown cocoa": "cocoa",
             "purple": "purple"
         };
 
