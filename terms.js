@@ -27,7 +27,7 @@ class TerminalHandler {
         }).setFilteredClass(S2DPacketOpenWindow);
         */
 
-        register("tick", () => {
+        register("step", () => {
             if(Player.getContainer().getName() == "Click in order!") {
                 this.click(this.getClickInOrderIndex());
             }
