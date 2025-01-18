@@ -49,10 +49,7 @@ class TerminalHandler {
             if (itemName.includes(color) && index < 44) r.push(index);
         });
         
-        let i = r.find(index => index !== undefined);
-        if(i == undefined) return;
-        this.clicked.push(i);
-        return i;
+        return r;
     }
 
     getClickInOrderIndex() {
