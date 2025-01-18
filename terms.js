@@ -6,23 +6,12 @@ class TerminalHandler {
         this.windowId = false;
         
         this.colorList = {
-            "silver": "light gray",
-            "white wool": "wool",
-            "black ink": "ink",
-            "blue lapis": "lapis",
-            "brown cocoa": "cocoa",
-            "purple": "purple",
-            "black": "black",
-            "pink": "pink",
-            "lime": "lime",
-            "brown": "brown",
-            "light blue": "light blue",
-            "yellow": "yellow",
-            "magenta": "magenta",
-            "cyan": "cyan",
-            "red": "red",
-            "green": "green",
-            "blue": "blue",
+            "light gray": "silver",
+            "light grey": "silver",
+            "wool": "white wool",
+            "ink": "black ink",
+            "lapis": "blue lapis",
+            "cocoa": "brown cocoa"
         };
 
         // ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
