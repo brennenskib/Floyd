@@ -120,6 +120,17 @@ class TerminalHandler {
         this.melody.unregister();
     }
 
+    onTimeSolver() {
+        let slot;
+
+        Player.getContainer().getItems().forEach((item, index) => {
+            if (index > 8) return;
+            if (item?.getMetadata() == 10) slot = index;
+        });
+        
+        return slot;
+    }
+
     mode(array) {
         return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
     }
