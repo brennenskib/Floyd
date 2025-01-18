@@ -10,7 +10,7 @@ class TerminalHandler {
             ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
         })
 
-        register("tick", () => {
+        register("ste[", () => {
             if(Player.getContainer().getName() == "Click in order!") {
                 this.click(this.getClickInOrderIndex());
             }
