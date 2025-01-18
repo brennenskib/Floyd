@@ -42,6 +42,7 @@ class TerminalHandler {
     getColorIndex() {
         let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
 
+        ChatLib.chat(color)
         return Player.getContainer().getItems().findIndex((item, index) => {
             let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
             Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
