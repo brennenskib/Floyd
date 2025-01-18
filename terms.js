@@ -4,7 +4,7 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 class TerminalHandler {
     constructor() {
         this.windowId = false;
-
+        this.inTerminal = false;
         this.colorList = {
             "light gray": "silver",
             "light grey": "silver",
@@ -28,6 +28,7 @@ class TerminalHandler {
         */
 
         register("step", () => {
+            if(this.inTerminal) return;
             if(Player.getContainer().getName() == "Click in order!") {
                 this.click(this.getClickInOrderIndex());
             }
@@ -42,6 +43,10 @@ class TerminalHandler {
                 }).start()
             }
         })//.setFps(500)
+
+        register("guiClosed", () => {
+
+        })
     }
     
     getColorIndex() {
