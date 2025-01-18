@@ -93,14 +93,14 @@ class TerminalHandler {
                     let cache = true;
 
                     while (cache) {
-                        let slot;
+                        let skibidi;
 
                         Player.getContainer().getItems().forEach((item, index) => {
                             if (index > 8) return;
-                            if (item?.getMetadata() == 10) slot = index;
+                            if (item?.getMetadata() == 10) skibidi = index;
                         });
 
-                        let slot = this.slot ?? 0;
+                        let slot = skibidi ?? 0;
 
                         if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
                             this.click(7 + stage);
