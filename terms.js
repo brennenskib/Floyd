@@ -28,7 +28,7 @@ class TerminalHandler {
 
                     a.forEach((slot, index) => {
                         this.click(slot);
-                        Thread.sleep(15)
+                        Thread.sleep(50)
                     })
                 }).start()
             }
