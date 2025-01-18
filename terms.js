@@ -33,7 +33,7 @@ class TerminalHandler {
             }
 
             if (Player.getContainer().getName().startsWith("Select all the ")) {
-                ChatLib.chat(this.getColorIndex());
+                this.click(this.getColorIndex());
             }
         }).setFps(500)
     }
