@@ -108,6 +108,7 @@ class TerminalHandler {
 
     click(slot) {
         if(!this.inTerminal) return;
+        this.slotsToRender.push(slot);
         Client.sendPacket(new C0EPacketClickWindow(this.windowId, slot, 0, 0, null, 0))
     }
 }
