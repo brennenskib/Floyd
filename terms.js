@@ -116,7 +116,7 @@ class TerminalHandler {
 
             panesToBeGreen.forEach((slot, index) => {
                 if(Player.getContainer().getStackInSlot(slot).getDamage() == 5) {
-
+                    
                 }
             })
         })
