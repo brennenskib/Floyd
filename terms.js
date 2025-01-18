@@ -101,7 +101,7 @@ class TerminalHandler {
                 }).start()
             } else if (iName == "Click the button on time!") {
                 this.inTerminal = true;
-                new Thread(() => {
+                const s = new Thread(() => {
                     while(this.inTerminal) {
                         ChatLib.chat('test')
                         let a = [9, 18, 27, 36]
