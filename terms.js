@@ -46,7 +46,6 @@ class TerminalHandler {
             let windowId = Player.getPlayer().field_71070_bA.field_75152_c;
             if (Client.currentGui.get() == null) return;
             Client.getMinecraft().field_71442_b.func_78753_a(windowId, slot, 2, 3, Player.getPlayer());
-            Thread.sleep(this.randomDelay());
         }).start();
     }
 }
