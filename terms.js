@@ -76,6 +76,17 @@ class TerminalHandler {
         })
     }
 
+    getSetAll() {
+        let optimal = this.mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
+        let r = [];
+
+        Player.getContainer().getItems().forEach((pane, index) => {
+            if (pane?.getDamage() == 15 || !pane) return;
+            for (let i = 0; i < Math.abs(this.colorCycle.indexOf(optimal) - this.colorCycle.indexOf(pane.getDamage())); i++) r.push(index);
+        });
+
+        return r;
+    }
     getStartsWith(iName) {
         let letter = iName.match(/What starts with: '(\w+)'?/)[1];
         let r = [];
