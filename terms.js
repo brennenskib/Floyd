@@ -14,7 +14,8 @@ class TerminalHandler {
             "purple": "purple",
             "black": "black",
             "pink": "pink",
-            "lime": "lime"
+            "lime": "lime",
+            "brown": "brown"
         };
 
         // ChatLib.chat(this.windowId instanceof Java.type("me.odinmain.features.impl.floor7.p3.termsim.TermSimGui"))
