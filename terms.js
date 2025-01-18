@@ -30,6 +30,8 @@ class TerminalHandler {
                         this.click(slot);
                         Thread.sleep(150 + (Math.random()*150))
                     })
+
+                    this.inTerminal = false;
                 }).start()
             }
 
@@ -43,6 +45,8 @@ class TerminalHandler {
                         this.click(slot);
                         Thread.sleep(150 + (Math.random()*150))
                     })
+
+                    this.inTerminal = false;
                 }).start()
             }
         })
