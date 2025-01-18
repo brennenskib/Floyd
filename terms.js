@@ -10,7 +10,7 @@ guiContainerTopField.setAccessible(true)
 class TerminalHandler {
     constructor() {
         this.windowId = 0;
-        this.slotsToRender = [];
+        this.slotsToRender = [5];
         this.inTerminal = false;
         this.colorList = {
             "light gray": "silver",
@@ -23,7 +23,7 @@ class TerminalHandler {
 
         register('guiClosed', (event) => {
             this.inTerminal = false;
-            this.slotsToRender = [];
+            this.slotsToRender = [5];
         })
         
         register('renderOverlay', () => {
