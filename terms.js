@@ -12,7 +12,7 @@ class TerminalHandler {
 
         register("tick", () => {
             if(Player.getContainer().getName() == "Click in order!") {
-                click(this.getClickInOrderIndex());
+                this.click(this.getClickInOrderIndex());
             }
         })
     }
