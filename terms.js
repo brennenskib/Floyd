@@ -84,7 +84,7 @@ class TerminalHandler {
         new Thread(() => {
             let windowId = Player.getPlayer().field_71070_bA.field_75152_c
             //if (Client.currentGui.get() == null) return;
-            Client.sendPacket(new C0EPacketClickWindow(windowId, slot, 0, 0, null, 0))
+            Client.sendPacket(new C0EPacketClickWindow(this.windowId, slot, 0, 0, null, 0))
         }).start();
     }
 }
