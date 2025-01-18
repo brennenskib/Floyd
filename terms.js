@@ -33,7 +33,11 @@ class TerminalHandler {
             }
 
             if (Player.getContainer().getName().startsWith("Select all the ")) {
-                this.click(this.getColorIndex());
+                new Thread(() => {
+                    this.getColorIndex().forEach(index => {
+                        this.click(this.getColorIndex());
+                    })
+                })
             }
         })//.setFps(500)
     }
