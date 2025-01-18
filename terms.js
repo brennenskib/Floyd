@@ -3,18 +3,12 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 
 class TerminalHandler {
     constructor() {
-        this.inTerm = false;
-        this.correctPanes = [];
-        this.colorList = {
-            "light gray": "silver",
-            "light grey": "silver",
-            "wool": "white wool",
-            "ink": "black ink",
-            "lapis": "blue lapis",
-            "cocoa": "brown cocoa"
-        };
+        this.windowId = false;
 
-        this.colorCycle = [4, 13, 11, 14, 1];
+        register('guiOpened', (event) => {
+            this.windowId = Client.currentGui.get()
+            ChatLib.chat(this.windowId.class)
+        })
 
         register("tick", () => {
             //if (obj.AutoTerms && isFloor7()) {
