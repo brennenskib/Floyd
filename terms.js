@@ -30,10 +30,12 @@ class TerminalHandler {
         register("step", () => {
             if(this.inTerminal) return;
             if(Player.getContainer().getName() == "Click in order!") {
+                this.inTerminal = true;
                 this.click(this.getClickInOrderIndex());
             }
 
             if (Player.getContainer().getName().startsWith("Select all the ")) {
+                this.inTerminal = true;
                 new Thread(() => {
                     this.getColorIndex().forEach(index => {
                         ChatLib.chat(index)
