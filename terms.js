@@ -51,7 +51,7 @@ class TerminalHandler {
     }
 
     getColorIndex() {
-        let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
+        let color = Player?.getContainer()?.getName()?.match(/Select all the (.+) items!/)[1]?.toLowerCase();
         let r = [];
 
         Player.getContainer().getItems().forEach((item, index) => {
