@@ -93,7 +93,13 @@ class TerminalHandler {
                     let cache = true;
 
                     while (cache) {
-                        let slot = this.onTimeSolver() ?? 0;
+                        Player.getContainer().getItems().forEach((item, index) => {
+                            if (index > 8) return;
+                            if (item?.getMetadata() == 10) this.slot = index;
+                        });
+
+                        let slot = this.slot ?? 0;
+                        
                         if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
                             this.click(7 + stage);
                             Thread.sleep(750);
