@@ -27,7 +27,6 @@ class TerminalHandler {
                     let a = this.getClickInOrderIndex();
 
                     a.forEach((slot, index) => {
-                        this.click(slot);
                         ChatLib.chat(this.inTerminal)
                         if(Player.getContainer().getStackInSlot(slot).getStackSize() == 14) {
                             this.inTerminal = false
