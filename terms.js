@@ -100,13 +100,22 @@ class TerminalHandler {
                     this.inTerminal = false;
                 }).start()
             } else if (iName == "Click the button on time!") {
-                this.inTerminal = true;
 
             }
         })
 
         this.melody = register('tick', () => {
-
+            if(!this.inTerminal) return;
+            let slot = this.onTimeSolver() ?? 0;
+            if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
+                this.click(7 + stage);
+                setTimeout(() => {
+                    stage += 9;
+                }, 750)
+            }
+            if (stage > 36) {
+                this.inTerminal = false;
+            }
         })
         this.melody.unregister();
     }
