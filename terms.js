@@ -26,7 +26,7 @@ class TerminalHandler {
 
                     let a = this.getClickInOrderIndex();
 
-                    a.forEach((slot, index) => {
+                    a.forEach((slot) => {
                         this.click(slot);
                         Thread.sleep(150 + (Math.random()*150))
                     })
@@ -39,7 +39,7 @@ class TerminalHandler {
 
                     let a = this.getColorIndex() 
 
-                    a.forEach((slot, index) => {
+                    a.forEach((slot) => {
                         this.click(slot);
                         Thread.sleep(150 + (Math.random()*150))
                     })
