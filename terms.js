@@ -86,30 +86,8 @@ class TerminalHandler {
 
                     this.inTerminal = false;
                 }).start()
-            } else if (iName == "Click the button on time!") {
-                this.inTerminal = true;
-                let stage = 9;
+            } else if (iName == "Correct all the panes!") {
 
-                new Thread(() => {
-                    while (this.inTerm) {
-                        let t;
-                        
-                        Player.getContainer().getItems().forEach((item, index) => {
-                            if (index > 8) return;
-                            if (item?.getMetadata() == 10) t = index;
-                        });
-
-                        let slot = t ?? 0;
-                        if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
-                            this.click(7 + stage);
-                            Thread.sleep(750);
-                            stage += 9;
-                        }
-                        if (stage > 36) {
-                            this.inTerminal = false;
-                        }
-                    }
-                }).start();
             }
         })
     }
@@ -118,27 +96,14 @@ class TerminalHandler {
         return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
     }
 
-    getMelody() {
-        Player.getContainer().getItems().forEach((pane, index) => {
-            let panes = [1, 2, 3, 4, 5]
-            let toClick = [16, 25, 34, 43];
-            let panesToBeGreen = [];
-            let row;
+    getCorrectAll() {
+        let r = [];
 
-            Player.getContainer().getItems().forEach((pane, index) => {
-                if(pane?.getDamage() == 15 || !pane) return;
-                if(pane?.getDamage() == 2 && panes.includes(index)) {
-                    row = panes[index]
-                    panesToBeGreen = [9 + index, 18 + index, 27 + index, 36 + index]
-                }
-            });
+        for (let index = 11; index < 34; index++) {
+            if (Player.getContainer().getStackInSlot(index)?.getMetadata() === 14) r.push(index);
+        }
 
-            panesToBeGreen.forEach((slot, index) => {
-                if(Player.getContainer().getStackInSlot(slot).getDamage() == 5) {
-                    this.click(toClick[index])
-                }
-            })
-        })
+        return r;
     }
 
     getSetAll() {
