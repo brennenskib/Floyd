@@ -26,9 +26,11 @@ class TerminalHandler {
 
                     let a = this.getClickInOrderIndex();
 
-                    a.forEach((slot) => {
+                    a.forEach((slot, index) => {
                         this.click(slot);
-                        Thread.sleep(10)
+                        ChatLib.chat(this.inTerminal)
+                        Thread.sleep(150 + (Math.random()*50))
+                        if(index == (a.length - 1)) this.inTerminal = false;
                     })
                 }).start()
             }
