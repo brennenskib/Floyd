@@ -26,7 +26,7 @@ class TerminalHandler {
             this.windowId = p.func_148901_c(); // getWindowId
         }).setFilteredClass(S2DPacketOpenWindow);
         */
-       
+
         register("step", () => {
             if(Player.getContainer().getName() == "Click in order!") {
                 this.click(this.getClickInOrderIndex());
@@ -44,7 +44,7 @@ class TerminalHandler {
         Player.getContainer().getItems().forEach((item, index) => {
             let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
             Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
-            if (itemName.includes(color) && index < 44) return index;
+            if (itemName.includes(color) && index < 44) ChatLib.chat(index);
         });
     }
 
