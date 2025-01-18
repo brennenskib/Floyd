@@ -32,6 +32,8 @@ class TerminalHandler {
                         if(Player.getContainer().getStackInSlot(slot).getStackSize() == 14) {
                             this.inTerminal = false
                         } else Thread.sleep(150 + (Math.random()*50))
+
+                        this.click(slot);
                     })
                 }).start()
             }
