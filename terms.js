@@ -82,8 +82,6 @@ class TerminalHandler {
 
     click(slot) {
         new Thread(() => {
-            let windowId = Player.getPlayer().field_71070_bA.field_75152_c
-            ChatLib.chat('wid: ' + this.windowId)
             Client.sendPacket(new C0EPacketClickWindow(this.windowId, slot, 0, 0, null, 0))
         }).start();
     }
