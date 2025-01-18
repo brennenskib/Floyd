@@ -72,7 +72,6 @@ class TerminalHandler {
         Player.getContainer().getItems().forEach((item, index) => {
             if (ChatLib.removeFormatting(item?.getName()).startsWith(letter) && index < 44) r.push(index);
         });
-        ChatLib.chat(r.toString())
         return r;
     }
 
