@@ -17,11 +17,11 @@ class TerminalHandler {
         this.colorCycle = [4, 13, 11, 14, 1];
 
         FloydRegister("tick", () => {
-            if (obj.AutoTerms && isFloor7()) {
+            //if (obj.AutoTerms && isFloor7()) {
                 if(Player.getContainer().getName() == "Click in order!") {
                     this.clickTerms(this.getClickInOrderIndex());
                 }
-            }
+            //}
         })
     }
     
