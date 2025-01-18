@@ -35,7 +35,7 @@ class TerminalHandler {
                     this.getClickInOrderIndex().forEach(index => {
                         ChatLib.chat(index)
                         this.click(index);
-                        Thread.sleep(50)
+                        Thread.sleep(1)
                     })
                 }).start()
             }
@@ -46,7 +46,7 @@ class TerminalHandler {
                     this.getColorIndex().forEach(index => {
                         ChatLib.chat(index)
                         this.click(index);
-                        Thread.sleep(50)
+                        Thread.sleep(1)
                     })
                 }).start()
             }
@@ -72,7 +72,7 @@ class TerminalHandler {
 
     getClickInOrderIndex() {
         let indexes = [];
-        
+
         Player.getContainer().getItems().forEach((item, index) => {
             if (item?.getMetadata() === 14) {
                 indexes[parseInt(item.getStackSize()) - 1] = index;
