@@ -47,7 +47,7 @@ class TerminalHandler {
         })//.setFps(500)
 
         register("guiClosed", () => {
-
+            this.inTerminal = false;
         })
     }
     
