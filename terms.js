@@ -27,6 +27,7 @@ class TerminalHandler {
 
             if (Player.getContainer().getName().startsWith("Select all the ")) {
                 let color = Player.getContainer().getName().match(/Select all the (.+) items!/)[1].toLowerCase();
+
                 Player.getContainer().getItems().forEach((item, index) => {
                     let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
                     Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
@@ -34,6 +35,10 @@ class TerminalHandler {
                 });
             }
         }).setFps(500)
+    }
+    
+    getColorIndex() {
+
     }
     
     getClickInOrderIndex() {
