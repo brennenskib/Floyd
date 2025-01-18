@@ -14,7 +14,7 @@ class TerminalHandler {
             if(Player.getContainer().getName() == "Click in order!") {
                 this.click(this.getClickInOrderIndex());
             }
-        })
+        }).setFps(500)
     }
     
     getClickInOrderIndex() {
