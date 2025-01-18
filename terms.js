@@ -76,6 +76,10 @@ class TerminalHandler {
         })
     }
 
+    mode(array) {
+        return array.sort((a,b) => array.filter(v => v===a).length - array.filter(v => v===b).length).pop()
+    }
+    
     getSetAll() {
         let optimal = this.mode(Player.getContainer().getItems().filter((item, index) => item?.getDamage() != 15 && index <= 33).map(pane => pane?.getDamage()));
         let r = [];
