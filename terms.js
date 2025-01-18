@@ -107,7 +107,7 @@ class TerminalHandler {
                     while (this.inTerminal) {
                         let slot = this.onTimeSolver() ?? 0;
                         if (Player.getContainer().getStackInSlot(slot + stage)?.getMetadata() == 5) {
-                            this.click(Player.getPlayer().field_71070_bA.field_75152_c, (7 + stage), 2, 3, Player.getPlayer());
+                            this.click(7 + stage)
                             Thread.sleep(750);
                             stage += 9;
                         }
@@ -127,7 +127,7 @@ class TerminalHandler {
             if (index > 8) return;
             if (item?.getMetadata() == 10) slot = index;
         });
-        
+
         return slot;
     }
 
