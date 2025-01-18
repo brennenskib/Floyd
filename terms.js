@@ -92,6 +92,8 @@ class TerminalHandler {
 
                 new Thread(() => {
                     while (this.inTerm) {
+                        let t;
+                        
                         Player.getContainer().getItems().forEach((item, index) => {
                             if (index > 8) return;
                             if (item?.getMetadata() == 10) t = index;
