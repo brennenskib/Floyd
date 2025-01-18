@@ -4,7 +4,7 @@ const S2DPacketOpenWindow = Java.type("net.minecraft.network.play.server.S2DPack
 class TerminalHandler {
     constructor() {
         this.windowId = false;
-        this.clicked = [];
+
         this.colorList = {
             "light gray": "silver",
             "light grey": "silver",
@@ -49,7 +49,6 @@ class TerminalHandler {
         let r = [];
 
         Player.getContainer().getItems().forEach((item, index) => {
-            if(this.clicked.includes(index)) return;
             let itemName = ChatLib.removeFormatting(item?.getName()).toLowerCase();
             Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
             if (itemName.includes(color) && index < 44) r.push(index);
