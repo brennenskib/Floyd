@@ -23,6 +23,7 @@ class TerminalHandler {
 
         register('guiClosed', (event) => {
             this.inTerminal = false;
+            this.slotsToRender = [];
         })
         
         register('renderOverlay', () => {
