@@ -61,8 +61,8 @@ class TerminalHandler {
                     Object.keys(this.colorList).forEach((key) => itemName = itemName.replace(key, this.colorList[key]));
                     if (itemName.includes(color) && index < 44) r.push(index);
                 });
-                
-                a.forEach(slot => {
+
+                r.forEach(slot => {
                     this.click(parseInt(slot));
                     Thread.sleep(150 + (Math.random()*150))
                 })
